@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { Modal, Button, Card, Form } from "react-bootstrap";
 import { AppContext } from "../../../context/AppContext";
-import { loginPromoter } from "../../../util/api";
+import { loginCompany } from "../../../util/api";
 
-function LoginPromoter() {
+function LoginCompany() {
   const {
     // setUser,
-    setIsLoginPromoterModal,
-    isLoginPromoterModal,
-    setIsSignupPromoterModal,
+    setIsLoginCompanyModal,
+    isLoginCompanyModal,
+    setIsSignupCompanyModal,
   } = useContext(AppContext);
 
   const [userEmail, setUserEmail] = useState("");
@@ -16,21 +16,21 @@ function LoginPromoter() {
 
   const onClickSignup = (e) => {
     e.preventDefault();
-    setIsLoginPromoterModal((pre) => !pre);
-    setIsSignupPromoterModal((pre) => !pre);
+    setIsLoginCompanyModal((pre) => !pre);
+    setIsSignupCompanyModal((pre) => !pre);
   };
 
   const handleOnSubmitLogin = async (e) => {
     e.preventDefault();
-    const promoterDetails = {
+    const CompanyDetails = {
       email: userEmail,
       password: userPassword,
     };
 
     try {
-      const response = await loginPromoter(promoterDetails);
+      const response = await loginCompany(CompanyDetails);
       if (response) {
-        setIsLoginPromoterModal((pre) => !pre);
+        setIsLoginCompanyModal((pre) => !pre);
         // setUser(checkIfUserSignedIn());
       }
     } catch (err) {
@@ -38,14 +38,14 @@ function LoginPromoter() {
     }
   };
   return (
-    <Modal show={isLoginPromoterModal} onHide={setIsLoginPromoterModal}>
+    <Modal show={isLoginCompanyModal} onHide={setIsLoginCompanyModal}>
       <Modal.Header closeButton>
         <Modal.Title>Log in</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Card className="w-100">
           <Card.Body>
-            <h2 className="text-center mb-4">Welcome Back Promoter!</h2>
+            <h2 className="text-center mb-4">Hello Advertiser!</h2>
             <Form onSubmit={(e) => handleOnSubmitLogin(e)}>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
@@ -87,4 +87,4 @@ function LoginPromoter() {
   );
 }
 
-export default LoginPromoter;
+export default LoginCompany;

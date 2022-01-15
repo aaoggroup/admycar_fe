@@ -3,17 +3,17 @@ import { Modal, Button, Card, Form } from "react-bootstrap";
 import { AppContext } from "../../../context/AppContext";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
-import "./signupPromoter.css";
-import { signUpPromoter } from "../../../util/api";
+import "./signupCompany.css";
+import { signUpCompany } from "../../../util/api";
 
-function SignupPromoter() {
+function SignupCompany() {
   const {
     setUser,
     user,
     checkIfUserSignedIn,
-    setIsSignupPromoterModal,
-    isSignupPromoterModal,
-    setIsLoginPromoterModal,
+    setIsSignupCompanyModal,
+    isSignupCompanyModal,
+    setIsLoginCompanyModal,
   } = useContext(AppContext);
 
   const [userEmail, setUserEmail] = useState("");
@@ -28,8 +28,8 @@ function SignupPromoter() {
 
   const onClickLogin = (e) => {
     e.preventDefault();
-    setIsLoginPromoterModal((pre) => !pre);
-    setIsSignupPromoterModal((pre) => !pre);
+    setIsLoginCompanyModal((pre) => !pre);
+    setIsSignupCompanyModal((pre) => !pre);
   };
 
   const HandleOnSubmit = async (e) => {
@@ -39,7 +39,7 @@ function SignupPromoter() {
       return;
     }
     setIsPasswordDoesntMatch(false);
-    const newPromoter = {
+    const newCompany = {
       email: userEmail,
       password: userPassword,
       confirm_password: userPasswordRepeat,
@@ -48,10 +48,10 @@ function SignupPromoter() {
       phone_number: userPhoneNumber,
     };
     try {
-      const response = await signUpPromoter(newPromoter);
+      const response = await signUpCompany(newCompany);
       if (response.status === 200) {
         // setUser(checkIfUserSignedIn());
-        setIsSignupPromoterModal((pre) => !pre);
+        setIsSignupCompanyModal((pre) => !pre);
       } else setError(response.data);
     } catch (err) {
       setError(err);
@@ -59,7 +59,7 @@ function SignupPromoter() {
   };
 
   return (
-    <Modal show={isSignupPromoterModal} onHide={setIsSignupPromoterModal}>
+    <Modal show={isSignupCompanyModal} onHide={setIsSignupCompanyModal}>
       <Modal.Header closeButton>
         <Modal.Title>Sign up</Modal.Title>
       </Modal.Header>
@@ -67,7 +67,7 @@ function SignupPromoter() {
         {" "}
         <Card className="w-100">
           <Card.Body>
-            <h2 className="text-center mb-4">Join our promoters family!</h2>
+            <h2 className="text-center mb-4">Join as advertiser</h2>
             <Form onSubmit={(e) => HandleOnSubmit(e)}>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
@@ -149,4 +149,4 @@ function SignupPromoter() {
   );
 }
 
-export default SignupPromoter;
+export default SignupCompany;

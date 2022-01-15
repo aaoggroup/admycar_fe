@@ -6,6 +6,9 @@ import { useState } from "react";
 import { AppContext } from "./context/AppContext";
 import SignupPromoter from "./components/Promoters/signupPromoter/SignupPromoter";
 import LoginPromoter from "./components/Promoters/loginPromoter/LoginPromoter";
+import SignupCompany from "./components/Companies/signupCompany/SignupCompany";
+import LoginCompany from "./components/Companies/loginCompany/LoginCompany";
+import { loginCompany, signUpCompany } from "./util/api";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -23,6 +26,11 @@ function App() {
     user,
     setUser,
     setIsChangeInUser,
+    isLoginPromoterModal,
+    isLoginCompanyModal,
+    isSignupPromoterModal,
+    isSignupPromoterModal,
+    isSignupCompanyModal,
   };
   return (
     <AppContext.Provider value={values}>
@@ -33,8 +41,8 @@ function App() {
       </div>
       {isLoginPromoterModal && <LoginPromoter />}
       {isSignupPromoterModal && <SignupPromoter />}
-      {/* {isLoginCompanyModal && <LoginPage />}
-      {isSignupCompanyModal && <SignupPage />} */}
+      {isLoginCompanyModal && <LoginCompany />}
+      {isSignupCompanyModal && <SignupCompany />}
     </AppContext.Provider>
   );
 }
