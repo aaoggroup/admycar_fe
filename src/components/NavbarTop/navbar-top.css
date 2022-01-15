@@ -1,0 +1,27 @@
+.dropdown-btn {
+  /* background-color: #f3f3f3 !important; */
+}
+
+.dropdown-btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.add-campaign-btn {
+  background-color: #0dcc63 !important;
+  color: #f3f3f3;
+  border: none;
+}
+
+.add-campaign-btn:hover {
+  background-color: #42e98d !important;
+}
+
+.add-campaign-btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.add-campaign-btn:active {
+  transform: scale(0.99);
+}
