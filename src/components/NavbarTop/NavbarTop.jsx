@@ -84,10 +84,10 @@ function NavbarTop() {
             title="Login"
           >
             <Dropdown.Item as="button" onClick={handleLoginPromoter}>
-              Login As Promoter
+            As Promoter
             </Dropdown.Item>
             <Dropdown.Item as="button" onClick={handleLoginCompany}>
-              Login As Company
+            As Company
             </Dropdown.Item>
           </DropdownButton>
           <DropdownButton
@@ -97,10 +97,10 @@ function NavbarTop() {
             title="Signup"
           >
             <Dropdown.Item as="button" onClick={handleSignupPromoter}>
-              Signup As Promoter
+            As Promoter
             </Dropdown.Item>
             <Dropdown.Item as="button" onClick={handleSignupCompany}>
-              Signup As Company
+            As Company
             </Dropdown.Item>
           </DropdownButton>
         </div>

@@ -31,7 +31,6 @@ function App() {
     isLoginPromoterModal,
     isLoginCompanyModal,
     isSignupPromoterModal,
-    isSignupPromoterModal,
     isSignupCompanyModal,
   };
   return (
@@ -41,11 +40,11 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/add_new_campaign" element={<AddCampaign />} />
-          {isLoginPromoterModal && <LoginPromoter />}
-          {isSignupPromoterModal && <SignupPromoter />}
-          {isLoginCompanyModal && <LoginCompany />}
-          {isSignupCompanyModal && <SignupCompany />}
         </Routes>
+        {isLoginPromoterModal && <LoginPromoter />}
+        {isSignupPromoterModal && <SignupPromoter />}
+        {isLoginCompanyModal && <LoginCompany />}
+        {isSignupCompanyModal && <SignupCompany />}
       </Router>
     </AppContext.Provider>
   );
