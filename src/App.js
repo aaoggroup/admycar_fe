@@ -1,16 +1,16 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import NavbarTop from "./components/NavBar/NavbarTop";
-
-
+import AddCampaign from "./components/AddCampaign/AddCampaign";
 
 function App() {
   return (
     <>
-    <NavbarTop/>
-    <div className="App">
-      <div>Admycar</div>
-    </div>
+      <NavbarTop />
+      <AddCampaign />
+      <div className="App">
+        <div>Admycar</div>
+      </div>
     </>
   );
 }
