@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Card } from "react-bootstrap";
-import { addCampaign } from "../../util/api";
+import { addCampaign } from "../../../util/api";
 
 function AddCampaign() {
   const [image, setImage] = useState(null);
