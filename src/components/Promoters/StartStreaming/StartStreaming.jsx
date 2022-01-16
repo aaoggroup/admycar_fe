@@ -4,6 +4,7 @@ import { addMoneyToUserBalance, getAdToStream } from "../../../util/api";
 
 function StartStreaming() {
   const { user } = useContext(AppContext);
+  console.log(user);
   let streamingInterval;
 
   const handleStartStreaming = (e) => {
