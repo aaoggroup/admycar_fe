@@ -15,6 +15,7 @@ import GlobalCampaign from "./components/Companies/GlobalCampaign/GlobalCampaign
 import SpecificCampaign from "./components/Companies/SpecificCampaign/SpecificCampaign";
 import Dashboard from "./components/Companies/Dashboard/Dashboard";
 import AllCampaigns from "./components/Companies/AllCampaigns/AllCampaigns";
+import StartStreaming from "./components/Promoters/StartStreaming/StartStreaming";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -73,6 +74,9 @@ function App() {
           )}
           {user?.user?.type === "Company" && (
             <Route path="/all_campaigns" element={<AllCampaigns />} />
+          )}
+          {user?.user?.type === "Promoter" && (
+            <Route path="/start_streaming" element={<StartStreaming />} />
           )}
         </Routes>
         {isLoginPromoterModal && <LoginPromoter />}

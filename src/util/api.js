@@ -103,3 +103,28 @@ export const loginCompany = async (companyDetails) => {
     return err;
   }
 };
+
+export const getAdToStream = async (properties) => {
+  try {
+    const response = await axios.get(BASE_URL + "/promoters/adtostream", {
+      properties,
+    });
+
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const addMoneyToUserBalance = async (properties) => {
+  try {
+    const response = await axios.put(
+      BASE_URL + "/promoters/add_promoter_balance",
+      properties
+    );
+
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};
