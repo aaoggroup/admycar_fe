@@ -12,7 +12,7 @@ function GlobalCampaign() {
   const [totalCampaignBudget, setTotalCampaignBudget] = useState(null);
   const [area, setArea] = useState(0);
 
-  const handleUploadCampaign = async (e) => {
+  const handleUploadCampaign = async (e, status) => {
     e.preventDefault();
     const campaignsProperties = {
       campaign_name: name,
@@ -23,7 +23,7 @@ function GlobalCampaign() {
       total_budget: totalCampaignBudget,
       area: area,
       date_created: Date.now(),
-      campaign_status: "Active", //handle also draft
+      campaign_status: status,
     };
     console.log(campaignsProperties);
     try {
@@ -87,8 +87,17 @@ function GlobalCampaign() {
           />
         </Form.Group>
         <div className="search-btn-container">
-          <button onClick={handleUploadCampaign} className="search-btn mt-4">
+          <button
+            onClick={(e) => handleUploadCampaign(e, "Active")}
+            className="search-btn mt-4"
+          >
             Add Campaign
+          </button>
+          <button
+            onClick={(e) => handleUploadCampaign(e, "Draft")}
+            className="search-btn mt-4"
+          >
+            Save as draft
           </button>
         </div>
       </Card>

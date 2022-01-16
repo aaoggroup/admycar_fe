@@ -1,16 +1,29 @@
 import React from "react";
 import { Button, ListGroup } from "react-bootstrap";
+import { changeCampaignStatus } from "../../../util/api";
 
 function SingleCampaignRow(props) {
   const { campaign } = props;
-  const handlePause = (e) => {
+  console.log(campaign);
+
+  const handlePauseClick = async (e) => {
     e.preventDefault();
-    //add function
+    const campaignUpdate = {
+      campaign_id: campaign._id,
+      campaign_status: "Paused",
+    };
+    await changeCampaignStatus(campaignUpdate);
   };
-  const handleActive = (e) => {
+
+  const handleActiveClick = async (e) => {
     e.preventDefault();
-    //add function
+    const campaignUpdate = {
+      campaign_id: campaign._id,
+      campaign_status: "Active",
+    };
+    await changeCampaignStatus(campaignUpdate);
   };
+
   return (
     <ListGroup horizontal className="w-100">
       <ListGroup.Item>{campaign.campaign_name}</ListGroup.Item>
@@ -26,13 +39,13 @@ function SingleCampaignRow(props) {
       <ListGroup.Item>{campaign.campaign_status}</ListGroup.Item>
       <ListGroup.Item>
         {campaign.campaign_status === "Active" && (
-          <Button onClick={handlePause}>Pause</Button>
+          <Button onClick={handlePauseClick}>Pause</Button>
         )}
         {campaign.campaign_status === "Paused" && (
-          <Button onClick={handleActive}>Start</Button>
+          <Button onClick={handleActiveClick}>Start</Button>
         )}
         {campaign.campaign_status === "Draft" && (
-          <Button onClick={handleActive}>Start</Button>
+          <Button onClick={handleActiveClick}>Start</Button>
         )}
       </ListGroup.Item>
     </ListGroup>

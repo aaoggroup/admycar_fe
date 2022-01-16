@@ -28,6 +28,21 @@ export const getCampaignsByCompany = async (company_id) => {
       BASE_URL + `/campaigns/${company_id}`,
       config()
     );
+    return response.data.data;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const changeCampaignStatus = async (campaign) => {
+  console.log(campaign);
+  try {
+    const response = await axios.put(
+      BASE_URL + `/campaigns/${campaign.campaign_id}`,
+      { campaign_status: campaign.campaign_status },
+      config()
+    );
+    console.log(response);
     return response;
   } catch (err) {
     return err;
