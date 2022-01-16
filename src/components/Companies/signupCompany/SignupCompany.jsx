@@ -46,11 +46,14 @@ function SignupCompany() {
       first_name: userFirstName,
       last_name: userLastName,
       phone_number: userPhoneNumber,
+      company_name: "Nike",
+      company_number: 23,
+      company_vat_id: 12345678,
     };
     try {
       const response = await signUpCompany(newCompany);
       if (response.status === 200) {
-        // setUser(checkIfUserSignedIn());
+        setUser(response);
         setIsSignupCompanyModal((pre) => !pre);
       } else setError(response.data);
     } catch (err) {

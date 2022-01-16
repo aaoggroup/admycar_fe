@@ -5,7 +5,7 @@ import { loginCompany } from "../../../util/api";
 
 function LoginCompany() {
   const {
-    // setUser,
+    setUser,
     setIsLoginCompanyModal,
     isLoginCompanyModal,
     setIsSignupCompanyModal,
@@ -29,14 +29,16 @@ function LoginCompany() {
 
     try {
       const response = await loginCompany(CompanyDetails);
+      console.log(response)
       if (response) {
         setIsLoginCompanyModal((pre) => !pre);
-        // setUser(checkIfUserSignedIn());
+        setUser(response);
       }
     } catch (err) {
       console.log(err);
     }
   };
+
   return (
     <Modal show={isLoginCompanyModal} onHide={setIsLoginCompanyModal}>
       <Modal.Header closeButton>

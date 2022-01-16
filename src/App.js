@@ -19,7 +19,20 @@ function App() {
   const [isSignupPromoterModal, setIsSignupPromoterModal] = useState(false);
   const [isSignupCompanyModal, setIsSignupCompanyModal] = useState(false);
   const [isChangeInUser, setIsChangeInUser] = useState(false);
-  const [user, setUser] = useState();
+
+  const checkIfUserSignedIn = () => {
+    try {
+      console.log(
+        JSON.parse(atob(localStorage.getItem("token").split(".")[1]))
+      );
+      return JSON.parse(atob(localStorage.getItem("token").split(".")[1]));
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+  };
+
+  const [user, setUser] = useState(checkIfUserSignedIn());
 
   const values = {
     setIsLoginCompanyModal,
@@ -40,7 +53,9 @@ function App() {
         <NavbarTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/add_new_campaign" element={<AddCampaign />} />
+          {user?.user.type === "Company" && (
+            <Route path="/add_new_campaign" element={<AddCampaign />} />
+          )}
         </Routes>
         {isLoginPromoterModal && <LoginPromoter />}
         {isSignupPromoterModal && <SignupPromoter />}

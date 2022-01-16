@@ -3,7 +3,7 @@ const BASE_URL = "http://localhost:5000";
 
 export const addCampaign = async (properties) => {
   try {
-    const response = axios.post(
+    const response = await axios.post(
       BASE_URL + "/companies/addcampaign",
       properties
     );
@@ -15,8 +15,13 @@ export const addCampaign = async (properties) => {
 
 export const signUpPromoter = async (newPromoter) => {
   try {
-    const response = axios.post(BASE_URL + "/promoters/signup", newPromoter);
-    return response;
+    const response = await axios.post(
+      BASE_URL + "/promoters/signup",
+      newPromoter
+    );
+    localStorage.setItem("token", response.data.token);
+    console.log(response);
+    return response.data.payload;
   } catch (err) {
     return err;
   }
@@ -24,8 +29,13 @@ export const signUpPromoter = async (newPromoter) => {
 
 export const loginPromoter = async (promoterDetails) => {
   try {
-    const response = axios.post(BASE_URL + "/promoters/login", promoterDetails);
-    return response;
+    const response = await axios.post(
+      BASE_URL + "/promoters/login",
+      promoterDetails
+    );
+    localStorage.setItem("token", response.data.token);
+    console.log(response.data.payload.user);
+    return response.data.payload;
   } catch (err) {
     return err;
   }
@@ -33,8 +43,12 @@ export const loginPromoter = async (promoterDetails) => {
 
 export const signUpCompany = async (newCompany) => {
   try {
-    const response = axios.post(BASE_URL + "/companies/signup", newCompany);
-    return response;
+    const response = await axios.post(
+      BASE_URL + "/companies/signup",
+      newCompany
+    );
+    localStorage.setItem("token", response.data.token);
+    return response.data.payload;
   } catch (err) {
     return err;
   }
@@ -42,8 +56,12 @@ export const signUpCompany = async (newCompany) => {
 
 export const loginCompany = async (companyDetails) => {
   try {
-    const response = axios.post(BASE_URL + "/companies/login", companyDetails);
-    return response;
+    const response = await axios.post(
+      BASE_URL + "/companies/login",
+      companyDetails
+    );
+    localStorage.setItem("token", response.data.token);
+    return response.data.payload;
   } catch (err) {
     return err;
   }
