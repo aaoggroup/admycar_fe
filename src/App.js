@@ -11,6 +11,7 @@ import SignupCompany from "./components/Companies/signupCompany/SignupCompany";
 import LoginCompany from "./components/Companies/loginCompany/LoginCompany";
 import { loginCompany, signUpCompany } from "./util/api";
 import HomePage from "./components/HomePage/HomePage";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -45,6 +46,7 @@ function App() {
         {isSignupPromoterModal && <SignupPromoter />}
         {isLoginCompanyModal && <LoginCompany />}
         {isSignupCompanyModal && <SignupCompany />}
+        <Footer />
       </Router>
     </AppContext.Provider>
   );
