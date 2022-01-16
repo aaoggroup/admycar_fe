@@ -4,3 +4,4 @@ navbar
 addcampaign
 auth - all authentication related (login logout register...)
 homepage
+all_campaigns - for dashboard

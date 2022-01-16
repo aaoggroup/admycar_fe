@@ -22,6 +22,18 @@ export const addCampaign = async (properties) => {
   }
 };
 
+export const getCampaignsByCompany = async (company_id) => {
+  try {
+    const response = await axios.get(
+      BASE_URL + `/campaigns/${company_id}`,
+      config()
+    );
+    return response;
+  } catch (err) {
+    return err;
+  }
+};
+
 export const signUpPromoter = async (newPromoter) => {
   try {
     const response = await axios.post(
