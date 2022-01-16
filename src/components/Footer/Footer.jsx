@@ -1,8 +1,12 @@
 import React from "react";
+import { Nav } from "react-bootstrap";
 import "./Footer.css";
 
 const Footer = () => (
-  <footer className="pt-4">
+  <Nav
+    fixed="bottom"
+    className="footer-container bg-dark col-12 justify-content-center align-items-end text-white p-3"
+  >
     <div className="container-fluid text-center text-md-left">
       <div className="row">
         <div className="col-md-6 mt-md-0 mt-3">
@@ -76,7 +80,7 @@ const Footer = () => (
         AdMyCar.com
       </a>
     </div>
-  </footer>
+  </Nav>
 );
 
 export default Footer;

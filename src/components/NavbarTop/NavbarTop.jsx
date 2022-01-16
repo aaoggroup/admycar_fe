@@ -67,10 +67,10 @@ function NavbarTop() {
             AdMyCar
           </Link>
           <Link
-            to="features"
+            to="dashboard"
             className="d-flex text-decoration-none me-3 text-light"
           >
-            Features
+            Dashboard
           </Link>
           <Link to="pricing" className="d-flex text-decoration-none text-light">
             Pricing

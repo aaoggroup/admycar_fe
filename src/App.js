@@ -1,4 +1,3 @@
-import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavbarTop from "./components/NavbarTop/NavbarTop";
@@ -14,6 +13,7 @@ import HomePage from "./components/HomePage/HomePage";
 import Footer from "./components/Footer/Footer";
 import GlobalCampaign from "./components/Companies/GlobalCampaign/GlobalCampaign";
 import SpecificCampaign from "./components/Companies/SpecificCampaign/SpecificCampaign";
+import Dashboard from "./components/Companies/Dashboard/Dashboard";
 import AllCampaigns from "./components/Companies/AllCampaigns/AllCampaigns";
 
 function App() {
@@ -67,6 +67,9 @@ function App() {
               path="/new_specific_campaign"
               element={<SpecificCampaign />}
             />
+          )}
+          {user?.user?.type === "Company" && (
+            <Route path="/dashboard" element={<Dashboard />} />
           )}
           {user?.user?.type === "Company" && (
             <Route path="/all_campaigns" element={<AllCampaigns />} />
