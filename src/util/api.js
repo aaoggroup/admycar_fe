@@ -12,7 +12,7 @@ const config = () => {
 export const addCampaign = async (properties) => {
   try {
     const response = await axios.post(
-      BASE_URL + "/companies/addcampaign",
+      BASE_URL + `/campaigns/${properties.company_id}`,
       properties,
       config()
     );

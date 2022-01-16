@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Card } from "react-bootstrap";
+import { AppContext } from "../../../context/AppContext";
 import { addCampaign } from "../../../util/api";
 
 function GlobalCampaign() {
+  const { user } = useContext(AppContext);
   const [image, setImage] = useState(null);
   const [name, setName] = useState(null);
   const [bid, setBid] = useState(null);
@@ -14,13 +16,14 @@ function GlobalCampaign() {
     e.preventDefault();
     const campaignsProperties = {
       campaign_name: name,
-      company_id: 1, //change to currentUser.id
+      company_id: user.user.company_id,
       asset: image,
       current_bid: bid,
       daily_budget: dailyBudget,
       total_budget: totalCampaignBudget,
       area: area,
       date_created: Date.now(),
+      campaign_status: "Active", //handle also draft
     };
     console.log(campaignsProperties);
     try {
