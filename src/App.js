@@ -12,6 +12,8 @@ import LoginCompany from "./components/Companies/loginCompany/LoginCompany";
 import { loginCompany, signUpCompany } from "./util/api";
 import HomePage from "./components/HomePage/HomePage";
 import Footer from "./components/Footer/Footer";
+import GlobalCampaign from "./components/Companies/GlobalCampaign/GlobalCampaign";
+import SpecificCampaign from "./components/Companies/SpecificCampaign/SpecificCampaign";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -53,8 +55,17 @@ function App() {
         <NavbarTop />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          {user?.user.type === "Company" && (
+          {user?.user?.type === "Company" && (
             <Route path="/add_new_campaign" element={<AddCampaign />} />
+          )}
+          {user?.user?.type === "Company" && (
+            <Route path="/new_global_campaign" element={<GlobalCampaign />} />
+          )}
+          {user?.user?.type === "Company" && (
+            <Route
+              path="/new_specific_campaign"
+              element={<SpecificCampaign />}
+            />
           )}
         </Routes>
         {isLoginPromoterModal && <LoginPromoter />}

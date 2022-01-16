@@ -1,5 +1,9 @@
-.dropdown-btn {
-  /* background-color: #f3f3f3 !important; */
+/* .dropdown-btn {
+  background-color: #f3f3f3 !important;
+} */
+
+.navbar-container {
+  height: 80px;
 }
 
 .dropdown-btn:focus {
@@ -24,4 +28,24 @@
 
 .add-campaign-btn:active {
   transform: scale(0.99);
+}
+
+.nav-logout-btn {
+  width: 120px;
+  height: 50px;
+  color: #fff;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.nav-logout-btn:hover {
+  border: solid 1px #fff;
+  border-radius: 5px;
+}
+
+.nav-logout-icon {
+  width: 26px;
+  height: 26px;
 }

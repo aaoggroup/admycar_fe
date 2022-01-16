@@ -8,6 +8,7 @@ import {
 } from "react-bootstrap";
 import "./navbar-top.css";
 import { BsPlus } from "react-icons/bs";
+import { VscSignOut } from "react-icons/vsc";
 import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 
@@ -53,7 +54,7 @@ function NavbarTop() {
 
   return (
     <Navbar
-      className="d-flex col-12 justify-content-between align-items-center p-2"
+      className="d-flex col-12 navbar-container justify-content-between align-items-center p-2"
       bg="dark"
       variant="dark"
     >
@@ -76,7 +77,7 @@ function NavbarTop() {
           </Link>
         </div>
         <div className="d-flex col-4 justify-content-center align-items-center">
-          {user?.user.type === "Company" && (
+          {user?.user?.type === "Company" && (
             <Button
               className="add-campaign-btn col-6 align-items-center"
               onClick={handleAddNewCampaignClick}
@@ -117,13 +118,15 @@ function NavbarTop() {
           </div>
         )}
         {user && (
-          <Button
-            className="add-campaign-btn col-2 align-items-center"
-            onClick={handleLogoutClick}
-          >
-            <BsPlus className="pb-1" />
-            Logout
-          </Button>
+          <div className="d-flex col-4 justify-content-end">
+            <button
+              className="nav-logout-btn align-items-center"
+              onClick={handleLogoutClick}
+            >
+              <VscSignOut className="nav-logout-icon me-2 mb-1" />
+              Log Out
+            </button>
+          </div>
         )}
       </Container>
     </Navbar>
