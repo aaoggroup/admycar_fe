@@ -2,11 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { Form, Card, Image } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../../../context/AppContext";
-import {
-  addCampaign,
-  editCampaign,
-  getSingleCampaign,
-} from "../../../util/api";
+import { controller, editCampaign, getSingleCampaign } from "../../../util/api";
 
 function EditGlobalCampaign() {
   const { campaign_id } = useParams();
@@ -21,19 +17,22 @@ function EditGlobalCampaign() {
   const [area, setArea] = useState(0);
   const [status, setStatus] = useState();
 
-  useEffect(() => {
-    const unsub = async () => {
+  useEffect(async () => {
+    try {
       const data = await getSingleCampaign({
         campaign_id,
         company_id: user.user.company_id,
       });
-      console.log(data.data);
       if (data) {
         setCampaignInfo(data.data);
         populateCampaignData(data.data);
       }
+    } catch (err) {
+      console.log(err);
+    }
+    return () => {
+      controller.abort();
     };
-    return unsub();
   }, []);
 
   const populateCampaignData = (campaignInfo) => {

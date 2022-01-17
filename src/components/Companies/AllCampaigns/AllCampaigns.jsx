@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../../context/AppContext";
-import { getCampaignsByCompany } from "../../../util/api";
+import { getCampaignsByCompany, controller } from "../../../util/api";
 import SingleCampaignRow from "../SingleCampaignRow/SingleCampaignRow";
 import "./all-campaigns.css";
 
@@ -9,14 +9,17 @@ function AllCampaigns() {
   const [companyCampaigns, setCompanyCampaigns] = useState(null);
   console.log(user);
 
-  useEffect(() => {
-    const unsub = async () => {
+  useEffect(async () => {
+    try {
       const campaigns = await getCampaignsByCompany(user.user.company_id);
       console.log(campaigns);
       setCompanyCampaigns(campaigns);
+    } catch (err) {
+      console.log(err);
+    }
+    return () => {
+      controller.abort();
     };
-    unsub();
-    return unsub();
   }, []);
 
   return (

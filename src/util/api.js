@@ -1,6 +1,12 @@
 import axios from "axios";
 const BASE_URL = "https://admycarbe.herokuapp.com";
 
+export let controller;
+//  controller = new AbortController();
+// {
+//   signal: controller.signal;
+// }
+
 const config = () => {
   if (localStorage.getItem("token")) {
     return {
@@ -23,10 +29,14 @@ export const addCampaign = async (properties) => {
 };
 
 export const getCampaignsByCompany = async (company_id) => {
+  controller = new AbortController();
   try {
     const response = await axios.get(
       BASE_URL + `/campaigns/${company_id}`,
-      config()
+      config(),
+      {
+        signal: controller.signal,
+      }
     );
     return response.data.data;
   } catch (err) {
@@ -35,14 +45,12 @@ export const getCampaignsByCompany = async (company_id) => {
 };
 
 export const changeCampaignStatus = async (campaign) => {
-  console.log(campaign);
   try {
     const response = await axios.put(
       BASE_URL + `/campaigns/${campaign.campaign_id}/${campaign.company_id}`,
       { campaign_status: campaign.campaign_status },
       config()
     );
-    console.log(response);
     return response;
   } catch (err) {
     return err;
@@ -56,7 +64,6 @@ export const signUpPromoter = async (newPromoter) => {
       newPromoter
     );
     localStorage.setItem("token", response.data.token);
-    console.log(response);
     return response.data.payload;
   } catch (err) {
     return err;
@@ -70,7 +77,6 @@ export const loginPromoter = async (promoterDetails) => {
       promoterDetails
     );
     localStorage.setItem("token", response.data.token);
-    console.log(response.data.payload.user);
     return response.data.payload;
   } catch (err) {
     return err;
@@ -96,7 +102,6 @@ export const loginCompany = async (companyDetails) => {
       BASE_URL + "/companies/login",
       companyDetails
     );
-    console.log(response.data.token);
     localStorage.setItem("token", response.data.token);
     return response.data.payload;
   } catch (err) {
@@ -105,7 +110,6 @@ export const loginCompany = async (companyDetails) => {
 };
 
 export const getAdToStream = async (properties) => {
-  console.log(properties);
   try {
     const response = await axios.get(BASE_URL + "/promoters/adtostream", {
       params: JSON.stringify(properties),
@@ -132,13 +136,15 @@ export const addMoneyToUserBalance = async (properties) => {
 };
 
 export const getSingleCampaign = async (props) => {
-  console.log(props);
+  controller = new AbortController();
   try {
     const response = await axios.get(
       BASE_URL + `/campaigns/${props.campaign_id}/${props.company_id}`,
-      config()
+      config(),
+      {
+        signal: controller.signal,
+      }
     );
-    console.log(response);
     return response.data;
   } catch (err) {
     return err;
@@ -146,7 +152,6 @@ export const getSingleCampaign = async (props) => {
 };
 
 export const editCampaign = async (campaign) => {
-  console.log(campaign);
   try {
     const response = await axios.put(
       BASE_URL + `/campaigns/${campaign.campaign_id}/${campaign.company_id}`,
@@ -161,7 +166,6 @@ export const editCampaign = async (campaign) => {
 };
 
 export const chargeCompany = async (properties) => {
-  console.log(properties);
   try {
     const response = await axios.put(
       BASE_URL + "/promoters/charge_company",
@@ -176,9 +180,11 @@ export const chargeCompany = async (properties) => {
 };
 
 export const getSingleCompany = async (id) => {
+  controller = new AbortController();
   try {
-    const response = await axios.get(BASE_URL + `/companies/${id}`, config());
-    console.log(response);
+    const response = await axios.get(BASE_URL + `/companies/${id}`, config(), {
+      signal: controller.signal,
+    });
     return response.data;
   } catch (err) {
     return err;

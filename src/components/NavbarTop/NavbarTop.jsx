@@ -11,7 +11,7 @@ import { BsPlus } from "react-icons/bs";
 import { VscSignOut } from "react-icons/vsc";
 import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
-import { getSingleCompany } from "../../util/api";
+import { getSingleCompany, controller } from "../../util/api";
 
 function NavbarTop() {
   const {
@@ -24,15 +24,18 @@ function NavbarTop() {
   } = useContext(AppContext);
   const [balance, setBalance] = useState(null);
 
-  useEffect(() => {
-    const unsub = async () => {
+  useEffect(async () => {
+    try {
       if (user?.user?.type === "Company") {
         const company = await getSingleCompany(user.user.company_id);
         setBalance(company.data[0].balance);
       }
+    } catch (err) {
+      console.log(err);
+    }
+    return () => {
+      controller.abort();
     };
-    unsub();
-    return unsub();
   }, [user]);
 
   const navigate = useNavigate();
@@ -148,7 +151,10 @@ function NavbarTop() {
           </div>
         )}
         {user?.user?.type && (
-          <div className="d-flex col-4 justify-content-end">
+          <div className="d-flex col-4 justify-content-end align-items-center">
+            {user.user.type === "Company" && (
+              <b className="text-success">${balance?.toFixed(2)}</b>
+            )}
             <button
               className="nav-logout-btn align-items-center"
               onClick={handleLogoutClick}
@@ -156,9 +162,6 @@ function NavbarTop() {
               <VscSignOut className="nav-logout-icon me-2 mb-1" />
               Log Out
             </button>
-            {user.user.type === "Company" && (
-              <span className="text-success">${balance}</span>
-            )}
           </div>
         )}
       </Container>
