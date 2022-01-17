@@ -26,8 +26,10 @@ function NavbarTop() {
 
   useEffect(() => {
     const unsub = async () => {
-      const company = await getSingleCompany(user.user.company_id);
-      setBalance(company.data[0].balance);
+      if (user?.user?.type === "Company") {
+        const company = await getSingleCompany(user.user.company_id);
+        setBalance(company.data[0].balance);
+      }
     };
     unsub();
     return unsub();
