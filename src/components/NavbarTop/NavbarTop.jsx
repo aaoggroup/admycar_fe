@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Navbar,
   Container,
@@ -11,6 +11,7 @@ import { BsPlus } from "react-icons/bs";
 import { VscSignOut } from "react-icons/vsc";
 import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
+import { getSingleCompany } from "../../util/api";
 
 function NavbarTop() {
   const {
@@ -21,6 +22,16 @@ function NavbarTop() {
     setIsLoginPromoterModal,
     setIsSignupPromoterModal,
   } = useContext(AppContext);
+  const [balance, setBalance] = useState(null);
+
+  useEffect(() => {
+    const unsub = async () => {
+      const company = await getSingleCompany(user.user.company_id);
+      setBalance(company.data[0].balance);
+    };
+    unsub();
+    return unsub();
+  }, []);
 
   const navigate = useNavigate();
 
@@ -132,6 +143,7 @@ function NavbarTop() {
               <VscSignOut className="nav-logout-icon me-2 mb-1" />
               Log Out
             </button>
+            <span className="text-success">${balance}</span>
           </div>
         )}
       </Container>

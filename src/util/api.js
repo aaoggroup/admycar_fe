@@ -173,3 +173,17 @@ export const chargeCompany = async (properties) => {
     return err;
   }
 };
+
+export const getSingleCompany = async (id) => {
+  try {
+    const response = await axios.get(
+      BASE_URL + `/companies/${id}`,
+      null,
+      config()
+    );
+    console.log(response);
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};
