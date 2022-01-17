@@ -33,7 +33,7 @@ function NavbarTop() {
     };
     unsub();
     return unsub();
-  }, []);
+  }, [user]);
 
   const navigate = useNavigate();
 
