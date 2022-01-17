@@ -12,6 +12,7 @@ function AllCampaigns() {
   useEffect(() => {
     const unsub = async () => {
       const campaigns = await getCampaignsByCompany(user.user.company_id);
+      console.log(campaigns);
       setCompanyCampaigns(campaigns);
     };
     unsub();
@@ -19,7 +20,7 @@ function AllCampaigns() {
   }, []);
 
   return (
-    <div className="all-campaigns-wrapper">
+    <div className="d-flex flex-column col-11 my-5 justify-content-center align-items-center all-campaigns-container">
       {companyCampaigns &&
         companyCampaigns.map((campaign) => (
           <SingleCampaignRow campaign={campaign} />

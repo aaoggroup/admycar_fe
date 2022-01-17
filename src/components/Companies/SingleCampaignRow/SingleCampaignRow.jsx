@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
-import { Button, ListGroup } from "react-bootstrap";
 import { changeCampaignStatus } from "../../../util/api";
 import { AppContext } from "../../../context/AppContext";
 import { useNavigate } from "react-router-dom";
+import "./single-campaign-row.css";
+import { BsPauseCircle, BsPlayCircle } from "react-icons/bs";
+import { FiEdit } from "react-icons/fi";
 
 function SingleCampaignRow(props) {
   const { campaign } = props;
@@ -37,34 +39,81 @@ function SingleCampaignRow(props) {
     await changeCampaignStatus(campaignUpdate);
   };
 
-  return (
-    <ListGroup horizontal className="w-100">
-      <ListGroup.Item>{campaign.campaign_name}</ListGroup.Item>
-      <ListGroup.Item>{campaign.current_bid}$</ListGroup.Item>
-      <ListGroup.Item>
-        {campaign.today_spent}$ / {campaign.daily_budget}$
-      </ListGroup.Item>
-      <ListGroup.Item>
-        {campaign.total_spent}$ / {campaign.total_budget}$
-      </ListGroup.Item>
-      <ListGroup.Item>{campaign.date_created.split("T")[0]}</ListGroup.Item>
+  const checkStatusForColor = () => {
+    if (campaign.campaign_status === "Active")
+      return "status-small-circle text-dark bg-success";
+    if (campaign.campaign_status === "Paused")
+      return "status-small-circle text-dark bg-warning";
+    if (campaign.campaign_status === "Draft")
+      return "status-small-circle bg-danger";
+  };
 
-      <ListGroup.Item>{campaign.campaign_status}</ListGroup.Item>
-      <ListGroup.Item>
+  return (
+    <div className="d-flex col-12 justify-content-between border-bottom text-dark">
+      <div className="d-flex col-10 align-items-center mb-2">
+        <div className="status-small-circle-container">
+          <div className={checkStatusForColor()}></div>
+        </div>
+        {campaign.asset ? (
+          <img
+            className="campaign-small-image"
+            src={campaign.asset}
+            alt="Campaign"
+          />
+        ) : (
+          <img
+            className="campaign-small-image"
+            src="/images/global.png"
+            alt="Campaign"
+          />
+        )}
+        <p className="fs-6 p-0 my-0 mx-2 name-row">
+          <b>Name:</b> {campaign.campaign_name}
+        </p>
+        <p className="fs-6 p-0 my-0 mx-2 type-row">
+          <b>Bid:</b> ${campaign.current_bid}
+        </p>
+        <p className="fs-6 p-0 my-0 mx-2 type-row">
+          <b>Today Spent:</b> ${campaign.today_spent} / ${campaign.daily_budget}
+        </p>
+        <p className="fs-6 p-0 my-0 mx-2 type-row">
+          <b>Total Spent:</b> ${campaign.total_spent} / ${campaign.total_budget}
+        </p>
+        <p className="fs-6 p-0 my-0 mx-2 type-row">
+          <b>Status:</b> {campaign.campaign_status}
+        </p>
+        <p className="fs-6 p-0 my-0 mx-2 type-row">
+          <b>Date Created:</b> {campaign.date_created.split("T")[0]}
+        </p>
+      </div>
+      <div className="d-flex col-2 align-items-center justify-content-end">
+        <button
+          className="d-flex align-items-center justify-content-evenly campaign-row-btn"
+          onClick={handleEditClick}
+        >
+          <FiEdit />
+          Edit
+        </button>{" "}
         {campaign.campaign_status === "Active" && (
-          <Button onClick={handlePauseClick}>Pause</Button>
+          <button
+            className="d-flex align-items-center justify-content-evenly campaign-row-btn"
+            onClick={handlePauseClick}
+          >
+            <BsPauseCircle />
+            Pause
+          </button>
         )}
-        {campaign.campaign_status === "Paused" && (
-          <Button onClick={handleActiveClick}>Start</Button>
+        {campaign.campaign_status !== "Active" && (
+          <button
+            className="d-flex align-items-center justify-content-evenly campaign-row-btn"
+            onClick={handleActiveClick}
+          >
+            <BsPlayCircle />
+            Start
+          </button>
         )}
-        {campaign.campaign_status === "Draft" && (
-          <Button onClick={handleActiveClick}>Start</Button>
-        )}
-      </ListGroup.Item>
-      <ListGroup.Item>
-        <Button onClick={handleEditClick}>Edit</Button>
-      </ListGroup.Item>
-    </ListGroup>
+      </div>
+    </div>
   );
 }
 
