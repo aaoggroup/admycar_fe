@@ -26,11 +26,13 @@ function StartStreaming() {
     // chargeCompany(adToSteam.bid);
     const moneyToAdd = 0.3 * adToStream.current_bid;
     console.log(moneyToAdd);
+    //push to monitor
     const response = await addMoneyToUserBalance({
       moneyToAdd: moneyToAdd,
       promoterID: user.user.promoter_id,
     });
     console.log(response);
+    //charge company
     //push to stream history(moneyEarned,)
     // } else alert("unable to stream");
   };

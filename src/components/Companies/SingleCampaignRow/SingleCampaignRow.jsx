@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { Button, ListGroup } from "react-bootstrap";
 import { changeCampaignStatus } from "../../../util/api";
 import { AppContext } from "../../../context/AppContext";
+import { useNavigate } from "react-router-dom";
 
 function SingleCampaignRow(props) {
   const { campaign } = props;
+  const navigate = useNavigate();
+
   console.log(campaign);
   const { user } = useContext(AppContext);
   console.log(user.user.company_id);
@@ -17,6 +20,11 @@ function SingleCampaignRow(props) {
       campaign_status: "Paused",
     };
     await changeCampaignStatus(campaignUpdate);
+  };
+
+  const handleEditClick = async (e) => {
+    e.preventDefault();
+    navigate(`/edit_campaign/${campaign._id}`);
   };
 
   const handleActiveClick = async (e) => {
@@ -52,6 +60,9 @@ function SingleCampaignRow(props) {
         {campaign.campaign_status === "Draft" && (
           <Button onClick={handleActiveClick}>Start</Button>
         )}
+      </ListGroup.Item>
+      <ListGroup.Item>
+        <Button onClick={handleEditClick}>Edit</Button>
       </ListGroup.Item>
     </ListGroup>
   );

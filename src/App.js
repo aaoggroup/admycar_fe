@@ -16,6 +16,7 @@ import SpecificCampaign from "./components/Companies/SpecificCampaign/SpecificCa
 import Dashboard from "./components/Companies/Dashboard/Dashboard";
 import AllCampaigns from "./components/Companies/AllCampaigns/AllCampaigns";
 import StartStreaming from "./components/Promoters/StartStreaming/StartStreaming";
+import EditGlobalCampaign from "./components/Companies/EditCampaign/EditGlobalCampaign";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -74,6 +75,12 @@ function App() {
           )}
           {user?.user?.type === "Company" && (
             <Route path="/all_campaigns" element={<AllCampaigns />} />
+          )}
+          {user?.user?.type === "Company" && (
+            <Route
+              path="/edit_campaign/:campaign_id/"
+              element={<EditGlobalCampaign />}
+            />
           )}
           {user?.user?.type === "Promoter" && (
             <Route path="/start_streaming" element={<StartStreaming />} />

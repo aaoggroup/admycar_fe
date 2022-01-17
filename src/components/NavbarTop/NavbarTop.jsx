@@ -72,6 +72,12 @@ function NavbarTop() {
           >
             Dashboard
           </Link>
+          <Link
+            to="start_streaming"
+            className="d-flex text-decoration-none me-3 text-light"
+          >
+            Streaming
+          </Link>
           <Link to="pricing" className="d-flex text-decoration-none text-light">
             Pricing
           </Link>
