@@ -8,7 +8,6 @@ import SignupPromoter from "./components/Promoters/signupPromoter/SignupPromoter
 import LoginPromoter from "./components/Promoters/loginPromoter/LoginPromoter";
 import SignupCompany from "./components/Companies/signupCompany/SignupCompany";
 import LoginCompany from "./components/Companies/loginCompany/LoginCompany";
-import { loginCompany, signUpCompany } from "./util/api";
 import HomePage from "./components/HomePage/HomePage";
 import Footer from "./components/Footer/Footer";
 import GlobalCampaign from "./components/Companies/GlobalCampaign/GlobalCampaign";
@@ -17,6 +16,7 @@ import Dashboard from "./components/Companies/Dashboard/Dashboard";
 import AllCampaigns from "./components/Companies/AllCampaigns/AllCampaigns";
 import StartStreaming from "./components/Promoters/StartStreaming/StartStreaming";
 import EditGlobalCampaign from "./components/Companies/EditCampaign/EditGlobalCampaign";
+import ProfilePage from "./components/Companies/ProfilePage/ProfilePage";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -72,6 +72,9 @@ function App() {
           )}
           {user?.user?.type === "Company" && (
             <Route path="/dashboard" element={<Dashboard />} />
+          )}
+          {user?.user?.type === "Company" && (
+            <Route path="/profile" element={<ProfilePage />} />
           )}
           {user?.user?.type === "Company" && (
             <Route path="/all_campaigns" element={<AllCampaigns />} />

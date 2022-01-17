@@ -77,21 +77,32 @@ function NavbarTop() {
           >
             AdMyCar
           </Link>
-          <Link
-            to="dashboard"
-            className="d-flex text-decoration-none me-3 text-light"
-          >
-            Dashboard
-          </Link>
-          <Link
-            to="start_streaming"
-            className="d-flex text-decoration-none me-3 text-light"
-          >
-            Streaming
-          </Link>
-          <Link to="pricing" className="d-flex text-decoration-none text-light">
-            Pricing
-          </Link>
+          {user?.user?.type === "Company" && (
+            <div className="d-flex col-12">
+              <Link
+                to="dashboard"
+                className="d-flex text-decoration-none me-3 text-light"
+              >
+                Dashboard
+              </Link>
+              <Link
+                to="profile"
+                className="d-flex text-decoration-none text-light"
+              >
+                Profile
+              </Link>
+            </div>
+          )}
+          {user?.user?.type === "Promoter" && (
+            <div className="d-flex col-12">
+              <Link
+                to="start_streaming"
+                className="d-flex text-decoration-none me-3 text-light"
+              >
+                Streaming
+              </Link>
+            </div>
+          )}
         </div>
         <div className="d-flex col-4 justify-content-center align-items-center">
           {user?.user?.type === "Company" && (
@@ -134,7 +145,7 @@ function NavbarTop() {
             </DropdownButton>
           </div>
         )}
-        {user && (
+        {user?.user?.type && (
           <div className="d-flex col-4 justify-content-end">
             <button
               className="nav-logout-btn align-items-center"
