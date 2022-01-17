@@ -38,7 +38,7 @@ export const changeCampaignStatus = async (campaign) => {
   console.log(campaign);
   try {
     const response = await axios.put(
-      BASE_URL + `/campaigns/${campaign.campaign_id}`,
+      BASE_URL + `/campaigns/${campaign.campaign_id}/${campaign.company_id}`,
       { campaign_status: campaign.campaign_status },
       config()
     );

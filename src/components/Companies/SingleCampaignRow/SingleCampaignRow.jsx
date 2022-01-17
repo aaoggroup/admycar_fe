@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button, ListGroup } from "react-bootstrap";
 import { changeCampaignStatus } from "../../../util/api";
+import { AppContext } from "../../../context/AppContext";
 
 function SingleCampaignRow(props) {
   const { campaign } = props;
   console.log(campaign);
+  const { user } = useContext(AppContext);
+  console.log(user.user.company_id);
 
   const handlePauseClick = async (e) => {
     e.preventDefault();
     const campaignUpdate = {
       campaign_id: campaign._id,
+      company_id: user.user.company_id,
       campaign_status: "Paused",
     };
     await changeCampaignStatus(campaignUpdate);
@@ -19,6 +23,7 @@ function SingleCampaignRow(props) {
     e.preventDefault();
     const campaignUpdate = {
       campaign_id: campaign._id,
+      company_id: user.user.company_id,
       campaign_status: "Active",
     };
     await changeCampaignStatus(campaignUpdate);
