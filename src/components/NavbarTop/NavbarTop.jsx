@@ -143,7 +143,9 @@ function NavbarTop() {
               <VscSignOut className="nav-logout-icon me-2 mb-1" />
               Log Out
             </button>
-            <span className="text-success">${balance}</span>
+            {user.user.type === "Company" && (
+              <span className="text-success">${balance}</span>
+            )}
           </div>
         )}
       </Container>

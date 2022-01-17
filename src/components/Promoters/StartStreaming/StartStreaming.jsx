@@ -18,34 +18,38 @@ function StartStreaming() {
   };
 
   const loopFunctionsForInterval = async () => {
-    // console.log("stream");
-    const area = 1;
+    //Rishon:
+    // const area = { lat: 31.972595, lng: 34.798461 };
+    //TelAviv:
+    const area = { lng: 32.091038, lat: 34.784365 };
+
     const adToStream = await getAdToStream({
       area,
       promoterID: user.user.promoter_id,
     });
     console.log(adToStream);
-    // const response = showAdOnMonitor();
-    // if (response.ok) {
-    // chargeCompa÷ny(adToSteam.bid);
-    const moneyToAdd = 0.3 * adToStream.current_bid;
-    console.log(moneyToAdd);
-    // //push to monitor
-    const response = await addMoneyToUserBalance({
-      moneyToAdd: moneyToAdd,
-      promoterID: user.user.promoter_id,
-    });
-    console.log(response);
-    const resp = await chargeCompany({
-      bid: adToStream.current_bid,
-      companyID: adToStream.company_id,
-      campaignID: adToStream._id,
-    });
-    console.log(resp);
+    if (adToStream === "No ad to stream") {
+      clearInterval(streamingInterval);
+      alert("No ads to show");
+    } else {
+      // const response = showAdOnMonitor();
 
-    //charge company
+      const moneyToAdd = 0.3 * adToStream.current_bid;
+      console.log(moneyToAdd);
+      // //push to monitor
+      const response = await addMoneyToUserBalance({
+        moneyToAdd: moneyToAdd,
+        promoterID: user.user.promoter_id,
+      });
+      console.log(response);
+      const resp = await chargeCompany({
+        bid: adToStream.current_bid,
+        companyID: adToStream.company_id,
+        campaignID: adToStream._id,
+      });
+      console.log(resp);
+    }
     //push to stream history(moneyEarned,)
-    // } else alert("unable to stream");
   };
 
   const handleStopStreaming = (e) => {

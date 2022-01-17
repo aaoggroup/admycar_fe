@@ -105,11 +105,12 @@ export const loginCompany = async (companyDetails) => {
 };
 
 export const getAdToStream = async (properties) => {
+  console.log(properties);
   try {
     const response = await axios.get(BASE_URL + "/promoters/adtostream", {
-      properties,
+      params: JSON.stringify(properties),
     });
-
+    console.log(response);
     return response.data;
   } catch (err) {
     return err;
@@ -176,11 +177,7 @@ export const chargeCompany = async (properties) => {
 
 export const getSingleCompany = async (id) => {
   try {
-    const response = await axios.get(
-      BASE_URL + `/companies/${id}`,
-      null,
-      config()
-    );
+    const response = await axios.get(BASE_URL + `/companies/${id}`, config());
     console.log(response);
     return response.data;
   } catch (err) {
