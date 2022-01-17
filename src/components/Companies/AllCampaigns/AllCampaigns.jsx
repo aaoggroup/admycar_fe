@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../../context/AppContext";
 import { getCampaignsByCompany } from "../../../util/api";
 import SingleCampaignRow from "../SingleCampaignRow/SingleCampaignRow";
 import "./all-campaigns.css";
+
 function AllCampaigns() {
   const { user } = useContext(AppContext);
   const [companyCampaigns, setCompanyCampaigns] = useState(null);
