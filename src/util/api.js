@@ -120,7 +120,52 @@ export const addMoneyToUserBalance = async (properties) => {
   try {
     const response = await axios.put(
       BASE_URL + "/promoters/add_promoter_balance",
-      properties
+      properties,
+      config()
+    );
+
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const getSingleCampaign = async (props) => {
+  console.log(props);
+  try {
+    const response = await axios.get(
+      BASE_URL + `/campaigns/${props.campaign_id}/${props.company_id}`,
+      config()
+    );
+    console.log(response);
+    return response.data;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const editCampaign = async (campaign) => {
+  console.log(campaign);
+  try {
+    const response = await axios.put(
+      BASE_URL + `/campaigns/${campaign.campaign_id}/${campaign.company_id}`,
+      campaign,
+      config()
+    );
+    console.log(response);
+    return response;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const chargeCompany = async (properties) => {
+  console.log(properties);
+  try {
+    const response = await axios.put(
+      BASE_URL + "/promoters/charge_company",
+      properties,
+      config()
     );
 
     return response.data;

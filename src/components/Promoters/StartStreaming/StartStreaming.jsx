@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/AppContext";
-import { addMoneyToUserBalance, getAdToStream } from "../../../util/api";
+import {
+  addMoneyToUserBalance,
+  getAdToStream,
+  chargeCompany,
+} from "../../../util/api";
 
 function StartStreaming() {
   const { user } = useContext(AppContext);
@@ -23,15 +27,22 @@ function StartStreaming() {
     console.log(adToStream);
     // const response = showAdOnMonitor();
     // if (response.ok) {
-    // chargeCompany(adToSteam.bid);
+    // chargeCompa÷ny(adToSteam.bid);
     const moneyToAdd = 0.3 * adToStream.current_bid;
     console.log(moneyToAdd);
-    //push to monitor
+    // //push to monitor
     const response = await addMoneyToUserBalance({
       moneyToAdd: moneyToAdd,
       promoterID: user.user.promoter_id,
     });
     console.log(response);
+    const resp = await chargeCompany({
+      bid: adToStream.current_bid,
+      companyID: adToStream.company_id,
+      campaignID: adToStream._id,
+    });
+    console.log(resp);
+
     //charge company
     //push to stream history(moneyEarned,)
     // } else alert("unable to stream");
