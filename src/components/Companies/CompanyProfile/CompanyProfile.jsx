@@ -20,36 +20,41 @@ function CompanyProfile() {
 
   return (
     <div className="d-flex col-12 justify-content-center align-items-center">
-      <Card className="d-flex col-6 card-profile-data-container border-0 p-3">
-        <div className="d-flex justify-content-between">
-          <div className="d-flex flex-column justify-content-evenly">
-            <p className="d-flex fs-4 align-items-center">
+      <Card className="d-flex col-8 border-0 p-3">
+        <div className="d-flex col-12 justify-content-between">
+          <div className="d-flex col-12 flex-column justify-content-evenly">
+            <p className="d-flex fs-3 fw-bold align-items-center justify-content-center">
               Welcome Back {companyData.company_name}!
-              <button
-                // onClick={handleEditProfileOpen}
-                type="submit"
-                className="d-flex edit-btn"
-              >
-                {/* <FiEdit3 className="edit-icon" /> */}
-              </button>
             </p>
-            <p className="d-flex fs-5">Email: {companyData.email}</p>
-            <p className="d-flex fs-5">
-              Contact Person: {companyData.first_name} {companyData.last_name}
-            </p>
-            <p className="d-flex fs-5">
-              Phone Number: {companyData.phone_number}
-            </p>
-            <p className="d-flex fs-5">
-              Company Number: {companyData.company_number}
-            </p>
-            <p className="d-flex fs-5">
-              Company Vat ID: {companyData.company_vat_id}
-            </p>
+            <div className="d-flex col-12 flex-column justify-content-center align-items-center fs-4 fw-bold mb-4">
+              <small className="fs-6 fw-light">Your Balance</small>$
+              {companyData.balance}
+            </div>
+            <div className="d-flex col-12 justify-content-evenly">
+              <Card className="company-profile-details col-4 mt-4 p-4">
+                <p className="d-flex fs-5 fw-bold">Contact Details:</p>
+                <p className="d-flex fs-5">
+                  Contact Person: {companyData.first_name}{" "}
+                  {companyData.last_name}
+                </p>
+                <p className="d-flex fs-5">Email: {companyData.email}</p>
+                <p className="d-flex fs-5">
+                  Phone Number: {companyData.phone_number}
+                </p>
+              </Card>
+              <Card className="company-profile-details col-4 mt-4 p-4">
+                <p className="d-flex fs-5 fw-bold">Company Details:</p>
+                <p className="d-flex fs-5">
+                  Company Number: {companyData.company_number}
+                </p>
+                <p className="d-flex fs-5">
+                  Company Vat ID: {companyData.company_vat_id}
+                </p>
+              </Card>
+            </div>
           </div>
         </div>
       </Card>
-      <Card className="col-4">${companyData.balance}</Card>
     </div>
   );
 }
