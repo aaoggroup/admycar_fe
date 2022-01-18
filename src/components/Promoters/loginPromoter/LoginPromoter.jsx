@@ -5,7 +5,7 @@ import { loginPromoter } from "../../../util/api";
 
 function LoginPromoter() {
   const {
-    // setUser,
+    setUser,
     setIsLoginPromoterModal,
     isLoginPromoterModal,
     setIsSignupPromoterModal,
@@ -31,7 +31,7 @@ function LoginPromoter() {
       const response = await loginPromoter(promoterDetails);
       if (response) {
         setIsLoginPromoterModal((pre) => !pre);
-        // setUser(checkIfUserSignedIn());
+        setUser(response);
       }
     } catch (err) {
       console.log(err);

@@ -106,6 +106,12 @@ function NavbarTop() {
               >
                 Streaming
               </Link>
+              <Link
+                to="profile"
+                className="d-flex text-decoration-none text-light"
+              >
+                Profile
+              </Link>
             </div>
           )}
         </div>

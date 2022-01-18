@@ -23,7 +23,7 @@ function CompanyProfile() {
 
   return (
     <div className="d-flex col-12 justify-content-center align-items-center">
-      <Card className="d-flex col-8 border-0 p-3">
+      <Card className="d-flex col-8 border-0 p-3 card-company-profile-container">
         <div className="d-flex flex-column align-items-center">
           <div className="add-img-small-btn-container">
             <MdAddCircleOutline className="add-img-small-btn" />

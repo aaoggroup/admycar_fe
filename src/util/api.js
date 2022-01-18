@@ -190,3 +190,15 @@ export const getSingleCompany = async (id) => {
     return err;
   }
 };
+
+export const getSinglePromoter = async (id) => {
+  controller = new AbortController();
+  try {
+    const response = await axios.get(BASE_URL + `/promoters/${id}`, config(), {
+      signal: controller.signal,
+    });
+    return response.data.data;
+  } catch (err) {
+    return err;
+  }
+};

@@ -1,7 +1,7 @@
 import React from "react";
 import CompanyProfile from "../CompanyProfile/CompanyProfile";
 
-function ProfilePage() {
+function CompanyProfilePage() {
   return (
     <div className="col-12 my-5">
       <CompanyProfile />
@@ -9,4 +9,4 @@ function ProfilePage() {
   );
 }
 
-export default ProfilePage;
+export default CompanyProfilePage;

@@ -50,7 +50,7 @@ function SignupPromoter() {
     try {
       const response = await signUpPromoter(newPromoter);
       if (response.status === 200) {
-        // setUser(checkIfUserSignedIn());
+        setUser(response);
         setIsSignupPromoterModal((pre) => !pre);
       } else setError(response.data);
     } catch (err) {

@@ -14,9 +14,10 @@ import GlobalCampaign from "./components/Companies/GlobalCampaign/GlobalCampaign
 import SpecificCampaign from "./components/Companies/SpecificCampaign/SpecificCampaign";
 import Dashboard from "./components/Companies/Dashboard/Dashboard";
 import AllCampaigns from "./components/Companies/AllCampaigns/AllCampaigns";
-import StartStreaming from "./components/Promoters/StartStreaming/StartStreaming";
 import EditGlobalCampaign from "./components/Companies/EditCampaign/EditGlobalCampaign";
-import ProfilePage from "./components/Companies/ProfilePage/ProfilePage";
+import CompanyProfilePage from "./components/Companies/CompanyProfilePage/CompanyProfilePage";
+import StartStreaming from "./components/Promoters/StartStreaming/StartStreaming";
+import PromoterProfilePage from "./components/Promoters/PromoterProfilePage/PromoterProfilePage";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -74,7 +75,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
           )}
           {user?.user?.type === "Company" && (
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/profile" element={<CompanyProfilePage />} />
           )}
           {user?.user?.type === "Company" && (
             <Route path="/all_campaigns" element={<AllCampaigns />} />
@@ -87,6 +88,9 @@ function App() {
           )}
           {user?.user?.type === "Promoter" && (
             <Route path="/start_streaming" element={<StartStreaming />} />
+          )}
+          {user?.user?.type === "Promoter" && (
+            <Route path="/profile" element={<PromoterProfilePage />} />
           )}
         </Routes>
         {isLoginPromoterModal && <LoginPromoter />}
