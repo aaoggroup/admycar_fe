@@ -26,7 +26,7 @@ function App() {
   const [isSignupPromoterModal, setIsSignupPromoterModal] = useState(false);
   const [isSignupCompanyModal, setIsSignupCompanyModal] = useState(false);
   const [isChangeInUser, setIsChangeInUser] = useState(false);
-  const [userCords, setUserCords] = useState({ lon: 0.0, lat: 0.0 });
+  const [userCords, setUserCords] = useState({ lng: 0.0, lat: 0.0 });
 
   const checkIfUserSignedIn = () => {
     try {

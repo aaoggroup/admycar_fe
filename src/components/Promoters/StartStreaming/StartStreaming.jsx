@@ -9,7 +9,7 @@ import {
 import "./start-streaming.css";
 
 function StartStreaming() {
-  const { user } = useContext(AppContext);
+  const { user, userCords } = useContext(AppContext);
   const [isStreaming, setIsStreaming] = useState(false);
   const [interval2, setInterval2] = useState(null);
 
@@ -24,7 +24,8 @@ function StartStreaming() {
     //Rishon:
     // const area = { lat: 31.972595, lng: 34.798461 };
     //TelAviv:
-    const area = { lng: 32.091038, lat: 34.784365 };
+    // const area = { lng: 32.091038, lat: 34.784365 };
+    const area = { lng: userCords.lng, lat: userCords.lat };
 
     const adToStream = await getAdToStream({
       area,
