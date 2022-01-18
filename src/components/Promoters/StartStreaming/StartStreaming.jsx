@@ -1,21 +1,23 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { AppContext } from "../../../context/AppContext";
 import {
   addMoneyToUserBalance,
   getAdToStream,
   chargeCompany,
+  showAdOnMonitor,
 } from "../../../util/api";
 import "./start-streaming.css";
 
 function StartStreaming() {
   const { user } = useContext(AppContext);
-  console.log(user);
-  let streamingInterval;
+  const [isStreaming, setIsStreaming] = useState(false);
+  const [interval2, setInterval2] = useState(null);
 
   const handleStartStreaming = (e) => {
     e.preventDefault();
     loopFunctionsForInterval();
-    streamingInterval = setInterval(loopFunctionsForInterval, 10000);
+    setInterval2(setInterval(loopFunctionsForInterval, 10000));
+    setIsStreaming((prev) => !prev);
   };
 
   const loopFunctionsForInterval = async () => {
@@ -30,11 +32,12 @@ function StartStreaming() {
     });
     console.log(adToStream);
     if (adToStream === "No ad to stream") {
-      clearInterval(streamingInterval);
+      clearInterval(interval2);
+      setInterval2(null);
       alert("No ads to show");
     } else {
-      // const response = showAdOnMonitor();
-
+      const monitorResponse = await showAdOnMonitor(adToStream.asset);
+      console.log(monitorResponse);
       const moneyToAdd = 0.3 * adToStream.current_bid;
       console.log(moneyToAdd);
       // //push to monitor
@@ -42,29 +45,31 @@ function StartStreaming() {
         moneyToAdd: moneyToAdd,
         promoterID: user.user.promoter_id,
       });
-      console.log(response);
       const resp = await chargeCompany({
         bid: adToStream.current_bid,
         companyID: adToStream.company_id,
         campaignID: adToStream._id,
       });
-      console.log(resp);
     }
     //push to stream history(moneyEarned,)
   };
 
   const handleStopStreaming = (e) => {
     e.preventDefault();
-    clearInterval(streamingInterval);
+    clearInterval(interval2);
+    setInterval2(null);
+    setIsStreaming((prev) => !prev);
     console.log("stop");
   };
 
   return (
     <div className="d-flex col-12 p-5">
-      <button className="start-streaming-btn" onClick={handleStartStreaming}>
-        Start
-      </button>
-      <button onClick={handleStopStreaming}>Stop</button>
+      {!isStreaming && (
+        <button className="start-streaming-btn" onClick={handleStartStreaming}>
+          Start
+        </button>
+      )}
+      {isStreaming && <button onClick={handleStopStreaming}>Stop</button>}
     </div>
   );
 }

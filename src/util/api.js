@@ -1,5 +1,6 @@
 import axios from "axios";
 const BASE_URL = "https://admycarbe.herokuapp.com";
+const MONITOR_SERVER_URL = "https://monitorbe.herokuapp.com/newimage";
 
 export let controller;
 //  controller = new AbortController();
@@ -198,6 +199,15 @@ export const getSinglePromoter = async (id) => {
       signal: controller.signal,
     });
     return response.data.data;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const showAdOnMonitor = async (url) => {
+  try {
+    const response = await axios.post(MONITOR_SERVER_URL, { asset: url });
+    return response;
   } catch (err) {
     return err;
   }

@@ -9,4 +9,6 @@ export const AppContext = createContext({
   setUser: () => {},
   checkIfUserSignedIn: () => {},
   setIsChangeInUser: () => {},
+  userCords: {},
+  setUserCords: () => {},
 });
