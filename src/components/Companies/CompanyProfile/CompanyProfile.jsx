@@ -36,7 +36,7 @@ function CompanyProfile() {
         </div>
         <div className="d-flex col-12 flex-column justify-content-evenly">
           <p className="d-flex fs-3 fw-bold align-items-center justify-content-center">
-            Welcome Back {companyData?.company_name}!
+            Welcome back, {companyData?.company_name}!
           </p>
           <div className="d-flex col-12 flex-column justify-content-center align-items-center fs-4 fw-bold mb-4">
             <small className="fs-6 fw-light">Your Balance</small>$

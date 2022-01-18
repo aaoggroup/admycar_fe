@@ -1,0 +1,14 @@
+.status-small-circle-container {
+  min-width: 12px;
+  min-height: 12px;
+}
+
+.status-small-circle {
+  position: relative;
+  bottom: 12px;
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #f8f8f8;
+  border-radius: 50%;
+}

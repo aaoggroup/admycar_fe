@@ -41,50 +41,56 @@ function SingleCampaignRow(props) {
 
   const checkStatusForColor = () => {
     if (campaign.campaign_status === "Active")
-      return "status-small-circle text-dark bg-success";
+      return "fs-6 m-0 p-2 d-flex align-items-center status-container text-light bg-success";
     if (campaign.campaign_status === "Paused")
-      return "status-small-circle text-dark bg-warning";
+      return "fs-6 m-0 p-2 d-flex align-items-center status-container text-light bg-warning";
     if (campaign.campaign_status === "Draft")
-      return "status-small-circle bg-danger";
+      return "fs-6 m-0 p-2 d-flex align-items-center status-container text-light bg-danger";
   };
 
   return (
     <div className="d-flex col-12 justify-content-between border-bottom text-dark">
       <div className="d-flex col-10 align-items-center mb-2">
-        <div className="status-small-circle-container">
-          <div className={checkStatusForColor()}></div>
+        <div className="d-flex col-1 mt-2 justify-content-center">
+          {campaign.asset ? (
+            <img
+              className="campaign-small-image"
+              src={campaign.asset}
+              alt="Campaign"
+            />
+          ) : (
+            <img
+              className="campaign-small-image"
+              src="/images/global.png"
+              alt="Campaign"
+            />
+          )}
         </div>
-        {campaign.asset ? (
-          <img
-            className="campaign-small-image"
-            src={campaign.asset}
-            alt="Campaign"
-          />
-        ) : (
-          <img
-            className="campaign-small-image"
-            src="/images/global.png"
-            alt="Campaign"
-          />
-        )}
-        <p className="fs-6 p-0 my-0 mx-2 name-row">
-          <b>Name:</b> {campaign.campaign_name}
-        </p>
-        <p className="fs-6 p-0 my-0 mx-2 type-row">
-          <b>Bid:</b> ${campaign.current_bid}
-        </p>
-        <p className="fs-6 p-0 my-0 mx-2 type-row">
-          <b>Today Spent:</b> ${campaign.today_spent} / ${campaign.daily_budget}
-        </p>
-        <p className="fs-6 p-0 my-0 mx-2 type-row">
-          <b>Total Spent:</b> ${campaign.total_spent} / ${campaign.total_budget}
-        </p>
-        <p className="fs-6 p-0 my-0 mx-2 type-row">
-          <b>Status:</b> {campaign.campaign_status}
-        </p>
-        <p className="fs-6 p-0 my-0 mx-2 type-row">
-          <b>Date Created:</b> {campaign.date_created.split("T")[0]}
-        </p>
+        <div className="d-flex col-2 mt-2 justify-content-center">
+          <p className="fs-6 m-0">{campaign.campaign_name}</p>
+        </div>
+        <div className="d-flex col-1 mt-2 justify-content-center">
+          <p className="fs-6 m-0">${campaign.current_bid}</p>
+        </div>
+        <div className="d-flex col-2 mt-2 justify-content-center">
+          <p className="fs-6 m-0">
+            ${campaign.today_spent.toFixed(2)} / ${campaign.daily_budget}
+          </p>
+        </div>
+        <div className="d-flex col-2 mt-2 justify-content-center">
+          <p className="fs-6 m-0">
+            ${campaign.total_spent.toFixed(2)} / ${campaign.total_budget}
+          </p>
+        </div>
+        <div className="d-flex col-1 mt-2 justify-content-center">
+          <p className="fs-6 m-0">{campaign.area}</p>
+        </div>
+        <div className="d-flex col-1 mt-2 justify-content-center">
+          <p className={checkStatusForColor()}>{campaign.campaign_status}</p>
+        </div>
+        <div className="d-flex col-2 mt-2 justify-content-center">
+          <p className="fs-6 m-0">{campaign.date_created.split("T")[0]}</p>
+        </div>
       </div>
       <div className="d-flex col-2 align-items-center justify-content-end">
         <button

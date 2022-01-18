@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AppContext } from "../../../context/AppContext";
-// import "./dashboard-all-campaigns-row.css";
+import "./dashboard-all-campaigns-row.css";
 
 function DashboardAllCampaignsRow(props) {
   const { campaign } = props;

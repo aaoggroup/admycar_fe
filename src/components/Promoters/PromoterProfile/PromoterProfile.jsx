@@ -36,7 +36,7 @@ function PromoterProfile() {
         </div>
         <div className="d-flex col-12 flex-column align-items-center">
           <p className="d-flex fs-3 fw-bold align-items-center justify-content-center">
-            Welcome Back {promoterData?.first_name} {promoterData?.last_name}!
+            Welcome back, {promoterData?.first_name} {promoterData?.last_name}!
           </p>
           <div className="d-flex col-12 justify-content-evenly">
             <div className="d-flex col-5 flex-column justify-content-center align-items-center fs-4 fw-bold mb-4">

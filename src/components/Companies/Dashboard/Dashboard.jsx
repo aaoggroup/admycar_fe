@@ -62,14 +62,18 @@ function Dashboard() {
           <p className="d-flex fs-5 fw-bold">Company Details:</p>
         </Card>
         <Card className="dashboard-card-container col-5 mt-4 mx-4 p-4 align-items-center">
-          <p className="d-flex fs-5 fw-bold">Today's Spent</p>
-          {companyCampaigns?.reduce((acc, cur) => acc + cur.today_spent, 0)} / $
-          {companyCampaigns?.reduce((acc, cur) => acc + cur.daily_budget, 0)}
+          <p className="d-flex fs-5 fw-bold">Today's Spent</p>$
+          {companyCampaigns
+            ?.reduce((acc, cur) => acc + cur.today_spent, 0)
+            .toFixed(2)}{" "}
+          / ${companyCampaigns?.reduce((acc, cur) => acc + cur.daily_budget, 0)}
         </Card>
         <Card className="dashboard-card-container col-5 mt-4 mx-4 p-4 align-items-center">
-          <p className="d-flex fs-5 fw-bold">Total Spent</p>
-          {companyCampaigns?.reduce((acc, cur) => acc + cur.total_spent, 0)} / $
-          {companyCampaigns?.reduce((acc, cur) => acc + cur.total_budget, 0)}
+          <p className="d-flex fs-5 fw-bold">Total Spent</p>$
+          {companyCampaigns
+            ?.reduce((acc, cur) => acc + cur.total_spent, 0)
+            .toFixed(2)}{" "}
+          / ${companyCampaigns?.reduce((acc, cur) => acc + cur.total_budget, 0)}
         </Card>
       </div>
     </div>

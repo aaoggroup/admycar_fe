@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { AppContext } from "../../../context/AppContext";
 import { getCampaignsByCompany, controller } from "../../../util/api";
 import SingleCampaignRow from "../SingleCampaignRow/SingleCampaignRow";
+import AllCampaignsHeaders from "../AllCampaignsHeaders/AllCampaignsHeaders";
 import "./all-campaigns.css";
 
 function AllCampaigns() {
@@ -23,12 +24,16 @@ function AllCampaigns() {
   }, []);
 
   return (
-    <div className="d-flex flex-column col-11 my-5 justify-content-center align-items-center all-campaigns-container">
-      {companyCampaigns &&
-        companyCampaigns.map((campaign) => (
-          <SingleCampaignRow campaign={campaign} />
-        ))}
-    </div>
+    <>
+      <h1 className="display-6 mt-5">Manage Campaigns</h1>
+      <div className="d-flex flex-column col-11 my-5 justify-content-center align-items-center all-campaigns-container">
+        <AllCampaignsHeaders />
+        {companyCampaigns &&
+          companyCampaigns.map((campaign) => (
+            <SingleCampaignRow campaign={campaign} />
+          ))}
+      </div>
+    </>
   );
 }
 
