@@ -1,0 +1,41 @@
+.area-image-btn1 {
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.area-image-btn1:hover {
+  background-color: #00ff37;
+  opacity: 50%;
+}
+
+.area-image-btn2 {
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.area-image-btn2:hover {
+  background-color: #fffb00;
+  opacity: 50%;
+}
+
+.area-image-btn3 {
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.area-image-btn3:hover {
+  background-color: #002fff;
+  opacity: 50%;
+}

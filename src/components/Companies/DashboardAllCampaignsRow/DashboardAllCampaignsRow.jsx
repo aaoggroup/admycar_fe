@@ -1,10 +1,6 @@
 import React, { useContext } from "react";
-import { changeCampaignStatus } from "../../../util/api";
 import { AppContext } from "../../../context/AppContext";
-import { useNavigate } from "react-router-dom";
 // import "./dashboard-all-campaigns-row.css";
-import { BsPauseCircle, BsPlayCircle } from "react-icons/bs";
-import { FiEdit } from "react-icons/fi";
 
 function DashboardAllCampaignsRow(props) {
   const { campaign } = props;

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Form, Card } from "react-bootstrap";
 import { AppContext } from "../../../context/AppContext";
 import { addCampaign } from "../../../util/api";
+import "./global-campaign.css";
 
 function GlobalCampaign() {
   const { user } = useContext(AppContext);
@@ -40,12 +41,25 @@ function GlobalCampaign() {
     reader.onloadend = () => {
       setImage(reader.result);
     };
-    console.log(reader);
   };
-  console.log(image);
+
+  const handleSetArea1Click = (e) => {
+    e.preventDefault();
+    setArea(1);
+  };
+
+  const handleSetArea2Click = (e) => {
+    e.preventDefault();
+    setArea(2);
+  };
+
+  const handleSetArea3Click = (e) => {
+    e.preventDefault();
+    setArea(3);
+  };
 
   return (
-    <Form className="d-flex col-12 justify-content-center mt-5">
+    <Form className="d-flex col-12 justify-content-around my-5">
       <Card className="d-flex flex-column col-8 justify-content-center form-container p-4 search-container">
         <Form.Control
           onChange={(e) => setName(e.target.value)}
@@ -71,12 +85,12 @@ function GlobalCampaign() {
           placeholder="Total campaign budget"
           className="input mt-3 border-0 border-bottom"
         />
-        <Form.Control
+        {/* <Form.Control
           onChange={(e) => setArea(e.target.value)}
           type="text"
           placeholder="Area"
           className="input mt-3 border-0 border-bottom"
-        />
+        /> */}
         <Form.Group controlId="formFile" className="mb-3 add-pet-form-group">
           <Form.Label>Select image</Form.Label>
           <Form.Control
@@ -101,6 +115,30 @@ function GlobalCampaign() {
           </button>
         </div>
       </Card>
+      <div className="d-flex flex-column align-items-center">
+        Choose Area To Advertise
+        <button onClick={handleSetArea1Click} className="area-image-btn1">
+          <img
+            className="col-10"
+            src="/images/area_1.1.png"
+            alt="Company Profile"
+          />
+        </button>
+        <button onClick={handleSetArea2Click} className="area-image-btn2">
+          <img
+            className="col-10"
+            src="/images/area_2.1.png"
+            alt="Company Profile"
+          />
+        </button>
+        <button onClick={handleSetArea3Click} className="area-image-btn3">
+          <img
+            className="col-10"
+            src="/images/area_3.1.png"
+            alt="Company Profile"
+          />
+        </button>
+      </div>
     </Form>
   );
 }
