@@ -40,12 +40,12 @@ function PromoterProfile() {
           </p>
           <div className="d-flex col-12 justify-content-evenly">
             <div className="d-flex col-5 flex-column justify-content-center align-items-center fs-4 fw-bold mb-4">
-              <small className="fs-6 fw-light">Your Withdrawal Balance</small>$
-              {promoterData?.withdrawal_balance?.toFixed(2)}
-            </div>
-            <div className="d-flex col-5 flex-column justify-content-center align-items-center fs-4 fw-bold mb-4">
               <small className="fs-6 fw-light">Your Pending Balance</small>$
               {promoterData?.pending_balance?.toFixed(2)}
+            </div>
+            <div className="d-flex col-5 flex-column justify-content-center align-items-center fs-4 fw-bold mb-4">
+              <small className="fs-6 fw-light">Your Withdrawal Balance</small>$
+              {promoterData?.withdrawal_balance?.toFixed(2)}
             </div>
           </div>
           <Card className="promoter-profile-details d-flex col-4 justify-content-center col-4 mt-4 p-4">

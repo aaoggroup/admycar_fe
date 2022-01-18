@@ -64,14 +64,29 @@ function StartStreaming() {
   };
 
   return (
-    <div className="d-flex col-12 p-5">
-      {!isStreaming && (
-        <button className="start-streaming-btn" onClick={handleStartStreaming}>
-          Start
-        </button>
-      )}
-      {isStreaming && <button onClick={handleStopStreaming}>Stop</button>}
-    </div>
+    <>
+      <h1 className="display-6 mt-5">
+        {user?.user?.first_name}, Let's make some money!
+      </h1>
+      <div className="d-flex col-12 justify-content-center align-items-center streaming-container">
+        {!isStreaming && (
+          <button
+            className="start-streaming-btn col-6"
+            onClick={handleStartStreaming}
+          >
+            Start
+          </button>
+        )}
+        {isStreaming && (
+          <button
+            className="stop-streaming-btn col-6"
+            onClick={handleStopStreaming}
+          >
+            Stop
+          </button>
+        )}
+      </div>
+    </>
   );
 }
 

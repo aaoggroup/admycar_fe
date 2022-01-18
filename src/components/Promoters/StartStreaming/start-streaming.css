@@ -1,10 +1,121 @@
+.streaming-container {
+  height: 570px;
+}
+
 .start-streaming-btn {
-  height: 200px;
-  width: 200px;
+  width: 120px;
+  height: 120px;
+  transform: scale(1.5);
   border-radius: 50%;
-  color: #212429;
-  background-color: #fff;
-  border: solid 5px #0fe619;
+  color: #fff;
+  font-weight: 500;
+  font-size: 2rem;
+  border: none;
   outline: none;
   box-shadow: none;
+  background-image: linear-gradient(
+    to right top,
+    #2dff00,
+    #2dff00,
+    #2dff00,
+    #2dff00,
+    #2dff00,
+    #4cfd30,
+    #60fc47,
+    #71fa59,
+    #8ff57b,
+    #a8f098,
+    #beeab4,
+    #d2e3ce
+  );
+}
+
+.start-streaming-btn:active {
+  transform: scale(1.48);
+}
+
+.start-streaming-btn:hover {
+  animation: start-streaming 0.5s ease 1 forwards;
+}
+
+@keyframes start-streaming {
+  0% {
+    box-shadow: 60px -60px 0 2px #f7f7f7, -60px -60px 0 2px #f7f7f7,
+      -60px 60px 0 2px #f7f7f7, 60px 60px 0 2px #f7f7f7, 0 0 0 2px #f7f7f7;
+  }
+  25% {
+    box-shadow: 0 -125px 0 2px #f7f7f7, -60px -60px 0 2px #f7f7f7,
+      -60px 60px 0 2px #f7f7f7, 60px 60px 0 2px #f7f7f7, 0 0 0 2px #50b439;
+  }
+  50% {
+    box-shadow: 0 -125px 0 2px #f7f7f7, -125px 0px 0 2px #f7f7f7,
+      -60px 60px 0 2px #f7f7f7, 60px 60px 0 2px #f7f7f7, 0 0 0 2px #50b439;
+  }
+  75% {
+    box-shadow: 0 -125px 0 2px #f7f7f7, -125px 0px 0 2px #f7f7f7,
+      0px 125px 0 2px #f7f7f7, 60px 60px 0 2px #f7f7f7, 0 0 0 2px #50b439;
+  }
+  100% {
+    box-shadow: 0 -125px 0 2px #f7f7f7, -125px 0px 0 2px #f7f7f7,
+      0px 125px 0 2px #f7f7f7, 120px 40px 0 2px #f7f7f7, 0 0 0 2px #50b439;
+  }
+}
+
+.stop-streaming-btn {
+  width: 120px;
+  height: 120px;
+  transform: scale(1.5);
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 500;
+  font-size: 2rem;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-image: linear-gradient(
+    to right top,
+    #ff2323,
+    #ff2323,
+    #ff2323,
+    #ff2323,
+    #ff2323,
+    #ff3b35,
+    #ff4d45,
+    #ff5d54,
+    #fe7c75,
+    #fa9995,
+    #f1b4b2,
+    #e3cece
+  );
+}
+
+.stop-streaming-btn:active {
+  transform: scale(1.48);
+}
+
+.stop-streaming-btn:hover {
+  animation: stop-streaming 0.5s ease 1 forwards;
+}
+
+@keyframes stop-streaming {
+  0% {
+    box-shadow: 60px -60px 0 2px #f7f7f7, -60px -60px 0 2px #f7f7f7,
+      -60px 60px 0 2px #f7f7f7, 60px 60px 0 2px #f7f7f7, 0 0 0 2px #f7f7f7;
+  }
+  25% {
+    box-shadow: 0 -125px 0 2px #f7f7f7, -60px -60px 0 2px #f7f7f7,
+      -60px 60px 0 2px #f7f7f7, 60px 60px 0 2px #f7f7f7, 0 0 0 2px #b43939;
+  }
+  50% {
+    box-shadow: 0 -125px 0 2px #f7f7f7, -125px 0px 0 2px #f7f7f7,
+      -60px 60px 0 2px #f7f7f7, 60px 60px 0 2px #f7f7f7, 0 0 0 2px #b43939;
+  }
+  75% {
+    box-shadow: 0 -125px 0 2px #f7f7f7, -125px 0px 0 2px #f7f7f7,
+      0px 125px 0 2px #f7f7f7, 60px 60px 0 2px #f7f7f7, 0 0 0 2px #b43939;
+  }
+  100% {
+    box-shadow: 0 -125px 0 2px #f7f7f7, -125px 0px 0 2px #f7f7f7,
+      0px 125px 0 2px #f7f7f7, 120px 40px 0 2px #f7f7f7, 0 0 0 2px #b43939;
+  }
 }
