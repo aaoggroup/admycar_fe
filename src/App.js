@@ -18,6 +18,7 @@ import EditGlobalCampaign from "./components/Companies/EditCampaign/EditGlobalCa
 import CompanyProfilePage from "./components/Companies/CompanyProfilePage/CompanyProfilePage";
 import StartStreaming from "./components/Promoters/StartStreaming/StartStreaming";
 import PromoterProfilePage from "./components/Promoters/PromoterProfilePage/PromoterProfilePage";
+import { UserCords } from "./components/Companies/userCords/UserCords";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -25,6 +26,7 @@ function App() {
   const [isSignupPromoterModal, setIsSignupPromoterModal] = useState(false);
   const [isSignupCompanyModal, setIsSignupCompanyModal] = useState(false);
   const [isChangeInUser, setIsChangeInUser] = useState(false);
+  const [userCords, setUserCords] = useState({lon: 0.0, lat: 0.0});
 
   const checkIfUserSignedIn = () => {
     try {
@@ -52,11 +54,14 @@ function App() {
     isLoginCompanyModal,
     isSignupPromoterModal,
     isSignupCompanyModal,
+    userCords,
+    setUserCords
   };
   return (
     <AppContext.Provider value={values}>
       <Router>
         <NavbarTop />
+        <UserCords />
         <Routes>
           <Route path="/" element={<HomePage />} />
           {user?.user?.type === "Company" && (
