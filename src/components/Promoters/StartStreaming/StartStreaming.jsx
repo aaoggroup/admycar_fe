@@ -5,6 +5,7 @@ import {
   getAdToStream,
   chargeCompany,
 } from "../../../util/api";
+import "./start-streaming.css";
 
 function StartStreaming() {
   const { user } = useContext(AppContext);
@@ -59,8 +60,10 @@ function StartStreaming() {
   };
 
   return (
-    <div>
-      <button onClick={handleStartStreaming}>Start</button>
+    <div className="d-flex col-12 p-5">
+      <button className="start-streaming-btn" onClick={handleStartStreaming}>
+        Start
+      </button>
       <button onClick={handleStopStreaming}>Stop</button>
     </div>
   );

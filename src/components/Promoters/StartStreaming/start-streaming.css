@@ -1,0 +1,10 @@
+.start-streaming-btn {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  color: #212429;
+  background-color: #fff;
+  border: solid 5px #0fe619;
+  outline: none;
+  box-shadow: none;
+}
