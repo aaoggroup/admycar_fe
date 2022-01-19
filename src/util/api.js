@@ -112,9 +112,10 @@ export const loginCompany = async (companyDetails) => {
 
 export const getAdToStream = async (properties) => {
   try {
-    const response = await axios.get(BASE_URL + "/promoters/adtostream", {
-      params: JSON.stringify(properties),
-    });
+    const response = await axios.post(BASE_URL + `/promoters/start-stream/${properties.promoterID}`, 
+      properties,
+      config()
+    );
     console.log(response);
     return response.data;
   } catch (err) {
@@ -125,7 +126,7 @@ export const getAdToStream = async (properties) => {
 export const addMoneyToUserBalance = async (properties) => {
   try {
     const response = await axios.put(
-      BASE_URL + "/promoters/add_promoter_balance",
+      BASE_URL + `/promoters/add_promoter_balance/${properties.promoterID}`,
       properties,
       config()
     );
@@ -169,7 +170,7 @@ export const editCampaign = async (campaign) => {
 export const chargeCompany = async (properties) => {
   try {
     const response = await axios.put(
-      BASE_URL + "/promoters/charge_company",
+      BASE_URL + `/promoters/charge_company/${properties.companyID}/${properties.promoterID}`,
       properties,
       config()
     );

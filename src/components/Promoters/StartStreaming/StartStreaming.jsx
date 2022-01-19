@@ -51,6 +51,7 @@ function StartStreaming() {
         bid: adToStream.current_bid,
         companyID: adToStream.company_id,
         campaignID: adToStream._id,
+        promoterID: user.user.promoter_id
       });
     }
     //push to stream history(moneyEarned)
