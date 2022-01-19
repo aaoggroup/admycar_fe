@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { changeCampaignStatus } from "../../../util/api";
 import { AppContext } from "../../../context/AppContext";
 import { useNavigate } from "react-router-dom";
@@ -8,12 +8,19 @@ import { FiEdit } from "react-icons/fi";
 
 function SingleCampaignRow(props) {
   const { campaign } = props;
-  const navigate = useNavigate();
-  // const [isCampaignActive, setIsCampaignActive] = useState(false);
-
-  console.log(campaign);
   const { user } = useContext(AppContext);
-  console.log(user.user.company_id);
+  const [isCampaignActive, setIsCampaignActive] = useState(false);
+  const [campaignStatus, setCampaignStatus] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (campaign?.campaign_status === "Active") {
+      setIsCampaignActive(true);
+    } else {
+      setIsCampaignActive(false);
+    }
+  }, []);
 
   const handlePauseClick = async (e) => {
     e.preventDefault();
@@ -23,7 +30,8 @@ function SingleCampaignRow(props) {
       campaign_status: "Paused",
     };
     await changeCampaignStatus(campaignUpdate);
-    // setIsCampaignActive((prev) => !prev);
+    setIsCampaignActive((prev) => !prev);
+    setCampaignStatus("Paused");
   };
 
   const handleEditClick = async (e) => {
@@ -39,15 +47,16 @@ function SingleCampaignRow(props) {
       campaign_status: "Active",
     };
     await changeCampaignStatus(campaignUpdate);
-    // setIsCampaignActive((prev) => !prev);
+    setIsCampaignActive((prev) => !prev);
+    setCampaignStatus("Active");
   };
 
   const checkStatusForColor = () => {
-    if (campaign.campaign_status === "Active")
+    if (campaignStatus === "Active" || campaign.campaign_status === "Active")
       return "fs-6 m-0 p-2 d-flex align-items-center status-container text-light bg-success";
-    if (campaign.campaign_status === "Paused")
+    if (campaignStatus === "Paused" || campaign.campaign_status === "Paused")
       return "fs-6 m-0 p-2 d-flex align-items-center status-container text-light bg-warning";
-    if (campaign.campaign_status === "Draft")
+    if (campaignStatus || campaign.campaign_status === "Draft")
       return "fs-6 m-0 p-2 d-flex align-items-center status-container text-light bg-danger";
   };
 
@@ -89,7 +98,9 @@ function SingleCampaignRow(props) {
           <p className="fs-6 m-0">{campaign.area}</p>
         </div>
         <div className="d-flex col-1 mt-2 justify-content-center">
-          <p className={checkStatusForColor()}>{campaign.campaign_status}</p>
+          <p className={checkStatusForColor()}>
+            {campaignStatus || campaign.campaign_status}
+          </p>
         </div>
         <div className="d-flex col-2 mt-2 justify-content-center">
           <p className="fs-6 m-0">{campaign.date_created.split("T")[0]}</p>
@@ -103,7 +114,7 @@ function SingleCampaignRow(props) {
           <FiEdit />
           Edit
         </button>{" "}
-        {campaign.campaign_status === "Active" && (
+        {isCampaignActive && (
           <button
             className="d-flex align-items-center justify-content-evenly campaign-row-btn"
             onClick={handlePauseClick}
@@ -112,7 +123,7 @@ function SingleCampaignRow(props) {
             Pause
           </button>
         )}
-        {campaign.campaign_status !== "Active" && (
+        {!isCampaignActive && (
           <button
             className="d-flex align-items-center justify-content-evenly campaign-row-btn"
             onClick={handleActiveClick}
