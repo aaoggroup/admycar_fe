@@ -49,7 +49,7 @@ function SignupPromoter() {
     };
     try {
       const response = await signUpPromoter(newPromoter);
-      if (response.status === 200) {
+      if (response) {
         setUser(response);
         setIsSignupPromoterModal((pre) => !pre);
       } else setError(response.data);

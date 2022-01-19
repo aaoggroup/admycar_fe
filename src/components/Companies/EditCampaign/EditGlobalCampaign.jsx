@@ -5,6 +5,7 @@ import { AppContext } from "../../../context/AppContext";
 import { controller, editCampaign, getSingleCampaign } from "../../../util/api";
 import "./edit-global-campaign.css";
 import { BsSave } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 function EditGlobalCampaign() {
   const { campaign_id } = useParams();
@@ -18,6 +19,8 @@ function EditGlobalCampaign() {
   const [area, setArea] = useState(100);
   const [status, setStatus] = useState();
   const [areaMap, setAreaMap] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(async () => {
     try {
@@ -63,6 +66,7 @@ function EditGlobalCampaign() {
     };
     try {
       await editCampaign(campaignsProperties);
+      navigate("/all_campaigns");
     } catch (err) {
       console.error(err);
     }

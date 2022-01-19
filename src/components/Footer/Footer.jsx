@@ -11,10 +11,7 @@ const Footer = () => (
       <div className="row">
         <div className="col-md-6 mt-md-0 mt-3">
           <h5 className="">AdMyCar</h5>
-          <p>
-            Aviram, you can change the colors and styling as you wish. Maybe add
-            a logo here? 不错。
-          </p>
+          <p>We are driving already, let's make some money!</p>
         </div>
 
         <hr className="clearfix w-100 d-md-none pb-0" />
@@ -58,27 +55,13 @@ const Footer = () => (
                 Terms of Use
               </a>
             </li>
-            <li>
-              <a className="a-link" href="##">
-                Aviad is a noob
-              </a>
-            </li>
-            <li>
-              <a className="a-link" href="##">
-                Aviad is a noob
-              </a>
-            </li>
           </ul>
         </div>
       </div>
     </div>
 
     <div className="text-center py-3">
-      © 2022 Copyright:
-      <a className="a-link" href="localhost:3000">
-        {" "}
-        AdMyCar.com
-      </a>
+      © 2022 Copyright: AdMyCar by AAOG Group
     </div>
   </Nav>
 );

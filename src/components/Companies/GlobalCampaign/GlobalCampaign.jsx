@@ -5,6 +5,7 @@ import { addCampaign } from "../../../util/api";
 import "./global-campaign.css";
 import { MdOutlineStickyNote2 } from "react-icons/md";
 import { VscRocket } from "react-icons/vsc";
+import { useNavigate } from "react-router-dom";
 
 function GlobalCampaign() {
   const { user } = useContext(AppContext);
@@ -15,6 +16,8 @@ function GlobalCampaign() {
   const [totalCampaignBudget, setTotalCampaignBudget] = useState(null);
   const [area, setArea] = useState(100);
   const [areaMap, setAreaMap] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleUploadCampaign = async (e, status) => {
     e.preventDefault();
@@ -29,10 +32,9 @@ function GlobalCampaign() {
       date_created: Date.now(),
       campaign_status: status,
     };
-    console.log(campaignsProperties);
     try {
-      const response = await addCampaign(campaignsProperties);
-      console.log(response);
+      await addCampaign(campaignsProperties);
+      navigate("/thank_you");
     } catch (err) {
       console.error(err);
     }

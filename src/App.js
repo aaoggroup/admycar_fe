@@ -17,10 +17,11 @@ import Dashboard from "./components/Companies/Dashboard/Dashboard";
 import AllCampaigns from "./components/Companies/AllCampaigns/AllCampaigns";
 import EditGlobalCampaign from "./components/Companies/EditCampaign/EditGlobalCampaign";
 import CompanyProfilePage from "./components/Companies/CompanyProfilePage/CompanyProfilePage";
+import SuccessPage from "./components/Companies/SuccessPage/SuccessPage";
 import StartStreaming from "./components/Promoters/StartStreaming/StartStreaming";
 import PromoterProfilePage from "./components/Promoters/PromoterProfilePage/PromoterProfilePage";
 import { UserCords } from "./components/Promoters/userCords/UserCords";
-import { getSingleCompany, controller } from "./util/api";
+import { getSingleCompany } from "./util/api";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -90,6 +91,9 @@ function App() {
           )}
           {user?.user?.type === "Company" && (
             <Route path="/new_global_campaign" element={<GlobalCampaign />} />
+          )}
+          {user?.user?.type === "Company" && (
+            <Route path="/thank_you" element={<SuccessPage />} />
           )}
           {/* {user?.user?.type === "Company" && (
             <Route

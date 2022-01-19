@@ -53,7 +53,7 @@ function SignupCompany() {
     };
     try {
       const response = await signUpCompany(newCompany);
-      if (response.status === 200) {
+      if (response) {
         setUser(response);
         setIsSignupCompanyModal((pre) => !pre);
       } else setError(response.data);
