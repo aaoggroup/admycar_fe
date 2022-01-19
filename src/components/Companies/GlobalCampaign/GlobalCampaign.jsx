@@ -61,6 +61,11 @@ function GlobalCampaign() {
     setArea(3);
   };
 
+  const handleSetAllAreaClick = (e) => {
+    e.preventDefault();
+    setArea(100);
+  };
+
   const handleOpenAreaMap = () => setAreaMap((prev) => !prev);
 
   return (
@@ -107,12 +112,20 @@ function GlobalCampaign() {
           </div>
           <div className="col-12 mt-4">
             <Form.Label className="fw-bold">Select Area</Form.Label>
-            <Form.Check
-              onClick={handleOpenAreaMap}
-              type="switch"
-              id="custom-switch"
-              label={area}
-            />
+            <div className="d-flex align-items-center">
+              <Form.Check
+                onClick={handleOpenAreaMap}
+                type="switch"
+                id="custom-switch"
+                label={area === 100 ? "All Area" : area}
+              />
+              <button
+                onClick={handleSetAllAreaClick}
+                className="clear-selection-btn col-10"
+              >
+                Clear Selection
+              </button>
+            </div>
           </div>
           <div className="d-flex col-12 mt-4 justify-content-between">
             <div controlId="formFile">
@@ -149,7 +162,7 @@ function GlobalCampaign() {
             </Form.Label>
             <button
               onClick={handleSetArea1Click}
-              className="area-image-btn1 col-8"
+              className="area-image-btn1 col-10"
             >
               <img
                 className="col-12"
@@ -159,7 +172,7 @@ function GlobalCampaign() {
             </button>
             <button
               onClick={handleSetArea2Click}
-              className="area-image-btn2 col-8"
+              className="area-image-btn2 col-10"
             >
               <img
                 className="col-12"
@@ -169,7 +182,7 @@ function GlobalCampaign() {
             </button>
             <button
               onClick={handleSetArea3Click}
-              className="area-image-btn3 col-8"
+              className="area-image-btn3 col-10"
             >
               <img
                 className="col-12"

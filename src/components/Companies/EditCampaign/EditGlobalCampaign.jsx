@@ -91,6 +91,11 @@ function EditGlobalCampaign() {
     setArea(3);
   };
 
+  const handleSetAllAreaClick = (e) => {
+    e.preventDefault();
+    setArea(100);
+  };
+
   const handleOpenAreaMap = () => setAreaMap((prev) => !prev);
 
   return (
@@ -169,12 +174,20 @@ function EditGlobalCampaign() {
           </div>
           <div className="col-12 mt-4">
             <Form.Label className="fw-bold">Select Area</Form.Label>
-            <Form.Check
-              onClick={handleOpenAreaMap}
-              type="switch"
-              id="custom-switch"
-              label={area}
-            />
+            <div className="d-flex align-items-center">
+              <Form.Check
+                onClick={handleOpenAreaMap}
+                type="switch"
+                id="custom-switch"
+                label={area === 100 ? "All Area" : area}
+              />
+              <button
+                onClick={handleSetAllAreaClick}
+                className="clear-selection-btn col-10"
+              >
+                Clear Selection
+              </button>
+            </div>
           </div>
           <div className="mt-4">
             <button

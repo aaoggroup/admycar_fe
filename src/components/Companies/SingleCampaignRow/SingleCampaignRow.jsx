@@ -17,8 +17,10 @@ function SingleCampaignRow(props) {
   useEffect(() => {
     if (campaign?.campaign_status === "Active") {
       setIsCampaignActive(true);
+      setCampaignStatus(campaign?.campaign_status);
     } else {
       setIsCampaignActive(false);
+      setCampaignStatus(campaign?.campaign_status);
     }
   }, []);
 
@@ -52,11 +54,11 @@ function SingleCampaignRow(props) {
   };
 
   const checkStatusForColor = () => {
-    if (campaignStatus === "Active" || campaign.campaign_status === "Active")
+    if (campaignStatus === "Active")
       return "fs-6 m-0 p-2 d-flex align-items-center status-container text-light bg-success";
-    if (campaignStatus === "Paused" || campaign.campaign_status === "Paused")
+    if (campaignStatus === "Paused")
       return "fs-6 m-0 p-2 d-flex align-items-center status-container text-light bg-warning";
-    if (campaignStatus || campaign.campaign_status === "Draft")
+    if (campaignStatus === "Draft")
       return "fs-6 m-0 p-2 d-flex align-items-center status-container text-light bg-danger";
   };
 
@@ -98,9 +100,7 @@ function SingleCampaignRow(props) {
           <p className="fs-6 m-0">{campaign.area}</p>
         </div>
         <div className="d-flex col-1 mt-2 justify-content-center">
-          <p className={checkStatusForColor()}>
-            {campaignStatus || campaign.campaign_status}
-          </p>
+          <p className={checkStatusForColor()}>{campaignStatus}</p>
         </div>
         <div className="d-flex col-2 mt-2 justify-content-center">
           <p className="fs-6 m-0">{campaign.date_created.split("T")[0]}</p>
