@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import { changeCampaignStatus } from "../../../util/api";
 import { AppContext } from "../../../context/AppContext";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { FiEdit } from "react-icons/fi";
 function SingleCampaignRow(props) {
   const { campaign } = props;
   const navigate = useNavigate();
+  // const [isCampaignActive, setIsCampaignActive] = useState(false);
 
   console.log(campaign);
   const { user } = useContext(AppContext);
@@ -22,6 +23,7 @@ function SingleCampaignRow(props) {
       campaign_status: "Paused",
     };
     await changeCampaignStatus(campaignUpdate);
+    // setIsCampaignActive((prev) => !prev);
   };
 
   const handleEditClick = async (e) => {
@@ -37,6 +39,7 @@ function SingleCampaignRow(props) {
       campaign_status: "Active",
     };
     await changeCampaignStatus(campaignUpdate);
+    // setIsCampaignActive((prev) => !prev);
   };
 
   const checkStatusForColor = () => {

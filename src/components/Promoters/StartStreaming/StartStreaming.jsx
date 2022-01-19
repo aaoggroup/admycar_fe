@@ -33,26 +33,27 @@ function StartStreaming() {
     });
     console.log(adToStream);
     if (adToStream === "No ad to stream") {
-      clearInterval(interval2);
-      setInterval2(null);
+      // clearInterval(interval2);
+      // setInterval2(null);
       alert("No ads to show");
+      return;
     } else {
       const monitorResponse = await showAdOnMonitor(adToStream.asset);
       console.log(monitorResponse);
       const moneyToAdd = 0.3 * adToStream.current_bid;
       console.log(moneyToAdd);
       // //push to monitor
-      const response = await addMoneyToUserBalance({
+      await addMoneyToUserBalance({
         moneyToAdd: moneyToAdd,
         promoterID: user.user.promoter_id,
       });
-      const resp = await chargeCompany({
+      await chargeCompany({
         bid: adToStream.current_bid,
         companyID: adToStream.company_id,
         campaignID: adToStream._id,
       });
     }
-    //push to stream history(moneyEarned,)
+    //push to stream history(moneyEarned)
   };
 
   const handleStopStreaming = (e) => {
