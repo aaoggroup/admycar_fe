@@ -6,7 +6,7 @@ import "./company-profile.css";
 import { MdAddCircleOutline } from "react-icons/md";
 
 function CompanyProfile() {
-  const { user } = useContext(AppContext);
+  const { user, balance } = useContext(AppContext);
   const [companyData, setCompanyData] = useState([]);
 
   useEffect(async () => {
@@ -40,7 +40,7 @@ function CompanyProfile() {
           </p>
           <div className="d-flex col-12 flex-column justify-content-center align-items-center fs-4 fw-bold mb-4">
             <small className="fs-6 fw-light">Your Balance</small>$
-            {companyData?.balance?.toFixed(2)}
+            {balance?.toFixed(2)}
           </div>
           <div className="d-flex col-12 justify-content-evenly">
             <Card className="company-profile-details col-4 mt-4 p-4">
@@ -50,9 +50,7 @@ function CompanyProfile() {
                 {companyData?.last_name}
               </p>
               <p className="d-flex fs-5">Email: {companyData?.email}</p>
-              <p className="d-flex fs-5">
-                Phone Number: {companyData?.phone_number}
-              </p>
+              <p className="d-flex fs-5">Phone: +{companyData?.phone_number}</p>
             </Card>
             <Card className="company-profile-details col-4 mt-4 p-4">
               <p className="d-flex fs-5 fw-bold">Company Details:</p>

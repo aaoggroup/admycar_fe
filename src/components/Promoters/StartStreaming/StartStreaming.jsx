@@ -33,8 +33,6 @@ function StartStreaming() {
     });
     console.log(adToStream);
     if (adToStream === "No ad to stream") {
-      // clearInterval(interval2);
-      // setInterval2(null);
       alert("No ads to show");
       return;
     } else {

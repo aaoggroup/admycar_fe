@@ -51,9 +51,7 @@ function PromoterProfile() {
           <Card className="promoter-profile-details d-flex col-4 justify-content-center col-4 mt-4 p-4">
             <p className="d-flex fs-5 fw-bold">Contact Details:</p>
             <p className="d-flex fs-5">Email: {promoterData?.email}</p>
-            <p className="d-flex fs-5">
-              Phone Number: {promoterData?.phone_number}
-            </p>
+            <p className="d-flex fs-5">Phone: +{promoterData?.phone_number}</p>
           </Card>
         </div>
       </Card>

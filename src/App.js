@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import NavbarTop from "./components/NavbarTop/NavbarTop";
@@ -11,7 +12,7 @@ import LoginCompany from "./components/Companies/loginCompany/LoginCompany";
 import HomePage from "./components/HomePage/HomePage";
 import Footer from "./components/Footer/Footer";
 import GlobalCampaign from "./components/Companies/GlobalCampaign/GlobalCampaign";
-import SpecificCampaign from "./components/Companies/SpecificCampaign/SpecificCampaign";
+// import SpecificCampaign from "./components/Companies/SpecificCampaign/SpecificCampaign";
 import Dashboard from "./components/Companies/Dashboard/Dashboard";
 import AllCampaigns from "./components/Companies/AllCampaigns/AllCampaigns";
 import EditGlobalCampaign from "./components/Companies/EditCampaign/EditGlobalCampaign";
@@ -19,6 +20,7 @@ import CompanyProfilePage from "./components/Companies/CompanyProfilePage/Compan
 import StartStreaming from "./components/Promoters/StartStreaming/StartStreaming";
 import PromoterProfilePage from "./components/Promoters/PromoterProfilePage/PromoterProfilePage";
 import { UserCords } from "./components/Promoters/userCords/UserCords";
+import { getSingleCompany, controller } from "./util/api";
 
 function App() {
   const [isLoginCompanyModal, setIsLoginCompanyModal] = useState(false);
@@ -27,7 +29,9 @@ function App() {
   const [isSignupCompanyModal, setIsSignupCompanyModal] = useState(false);
   const [isChangeInUser, setIsChangeInUser] = useState(false);
   const [userCords, setUserCords] = useState({ lng: 0.0, lat: 0.0 });
+  const [balance, setBalance] = useState(null);
   console.log(userCords);
+  let balanceInterval;
 
   const checkIfUserSignedIn = () => {
     try {
@@ -43,6 +47,19 @@ function App() {
 
   const [user, setUser] = useState(checkIfUserSignedIn());
 
+  useEffect(() => {
+    try {
+      if (user?.user?.type === "Company") {
+        balanceInterval = setInterval(async () => {
+          const company = await getSingleCompany(user.user.company_id);
+          setBalance(company.data[0].balance);
+        }, 1000);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }, [user]);
+
   const values = {
     setIsLoginCompanyModal,
     setIsLoginPromoterModal,
@@ -57,6 +74,9 @@ function App() {
     isSignupCompanyModal,
     userCords,
     setUserCords,
+    balance,
+    setBalance,
+    balanceInterval,
   };
   return (
     <AppContext.Provider value={values}>

@@ -9,8 +9,6 @@ import { signUpCompany } from "../../../util/api";
 function SignupCompany() {
   const {
     setUser,
-    user,
-    checkIfUserSignedIn,
     setIsSignupCompanyModal,
     isSignupCompanyModal,
     setIsLoginCompanyModal,
@@ -19,9 +17,12 @@ function SignupCompany() {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [userPasswordRepeat, setUserPasswordRepeat] = useState("");
+  const [userCompanyName, setUserCompanyName] = useState("");
   const [userFirstName, setUserFirstName] = useState("");
   const [userLastName, setUserLastName] = useState("");
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
+  const [userCompanyNumber, setUserCompanyNumber] = useState("");
+  const [userCompanyVatId, setUserCompanyVatId] = useState("");
   const [isLoadingSignup, setIsLoadingSignup] = useState(false);
   const [isPasswordDoesntMatch, setIsPasswordDoesntMatch] = useState(false);
   const [error, setError] = useState("");
@@ -46,9 +47,9 @@ function SignupCompany() {
       first_name: userFirstName,
       last_name: userLastName,
       phone_number: userPhoneNumber,
-      company_name: "Nike",
-      company_number: 23,
-      company_vat_id: 12345678,
+      company_name: userCompanyName,
+      company_number: userCompanyNumber,
+      company_vat_id: userCompanyVatId,
     };
     try {
       const response = await signUpCompany(newCompany);
@@ -101,7 +102,15 @@ function SignupCompany() {
                   Please make sure the passwords match
                 </h3>
               )}
-              <Form.Group id="password">
+              <Form.Group id="companyName">
+                <Form.Label>Company Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setUserCompanyName(e.target.value)}
+                  required
+                />
+              </Form.Group>
+              <Form.Group id="firstName">
                 <Form.Label>First Name</Form.Label>
                 <Form.Control
                   type="text"
@@ -109,7 +118,7 @@ function SignupCompany() {
                   required
                 />
               </Form.Group>
-              <Form.Group id="password">
+              <Form.Group id="lastName">
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control
                   type="text"
@@ -117,7 +126,10 @@ function SignupCompany() {
                   required
                 />
               </Form.Group>
-              <Form.Group id="phoneNumber" className="phone-number-container">
+              <Form.Group
+                id="phoneNumber"
+                className="mt-2 phone-number-container"
+              >
                 <PhoneInput
                   inputClass="phone-number-input"
                   country={"il"}
@@ -125,7 +137,22 @@ function SignupCompany() {
                   onChange={(number) => setUserPhoneNumber(number)}
                 />
               </Form.Group>
-
+              <Form.Group id="companyNumber">
+                <Form.Label>Company Number</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setUserCompanyNumber(e.target.value)}
+                  required
+                />
+              </Form.Group>
+              <Form.Group id="companyVatId">
+                <Form.Label>Company Vat Id</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={(e) => setUserCompanyVatId(e.target.value)}
+                  required
+                />
+              </Form.Group>
               <Button
                 disabled={isLoadingSignup}
                 className="w-100"

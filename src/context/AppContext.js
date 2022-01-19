@@ -11,4 +11,6 @@ export const AppContext = createContext({
   setIsChangeInUser: () => {},
   userCords: {},
   setUserCords: () => {},
+  balance: null,
+  balanceInterval: () => {},
 });

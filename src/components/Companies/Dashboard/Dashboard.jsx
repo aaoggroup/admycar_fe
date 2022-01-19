@@ -14,7 +14,7 @@ import "./dashboard.css";
 
 function Dashboard() {
   const navigate = useNavigate();
-  const { user } = useContext(AppContext);
+  const { user, balance } = useContext(AppContext);
   const [companyCampaigns, setCompanyCampaigns] = useState(null);
   const [dashboardCompanyData, setDashboardCompanyData] = useState(null);
   console.log(user);
@@ -59,9 +59,7 @@ function Dashboard() {
         <Card className="dashboard-card-container col-5 mt-4 mx-4 p-4 align-items-center">
           <p className="d-flex fs-5 fw-bold">Your Balance</p>
           <div className="d-flex col-12 justify-content-center flex-grow-1 align-items-center">
-            <h1 className="fs-1">
-              ${dashboardCompanyData?.balance?.toFixed(2)}
-            </h1>
+            <h1 className="fs-1">${balance?.toFixed(2)}</h1>
           </div>
         </Card>
         <Card className="dashboard-card-container col-5 mt-4 mx-4 p-4">

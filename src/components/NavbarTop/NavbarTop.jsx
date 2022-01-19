@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import {
   Navbar,
   Container,
@@ -11,7 +11,6 @@ import { BsPlus } from "react-icons/bs";
 import { VscSignOut } from "react-icons/vsc";
 import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
-import { getSingleCompany, controller } from "../../util/api";
 
 function NavbarTop() {
   const {
@@ -21,22 +20,9 @@ function NavbarTop() {
     setIsLoginCompanyModal,
     setIsLoginPromoterModal,
     setIsSignupPromoterModal,
+    balance,
+    balanceInterval,
   } = useContext(AppContext);
-  const [balance, setBalance] = useState(null);
-
-  useEffect(async () => {
-    try {
-      if (user?.user?.type === "Company") {
-        const company = await getSingleCompany(user.user.company_id);
-        setBalance(company.data[0].balance);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-    return () => {
-      controller.abort();
-    };
-  }, [user]);
 
   const navigate = useNavigate();
 
@@ -65,6 +51,7 @@ function NavbarTop() {
   const handleLogoutClick = () => {
     setUser(null);
     localStorage.clear();
+    clearInterval(balanceInterval);
     navigate("/");
   };
 
