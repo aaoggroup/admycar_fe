@@ -1,20 +1,36 @@
-.choose-campaign-btn {
+.choose-global-campaign-btn {
   background-color: transparent;
   outline: none;
   box-shadow: none;
   border: none;
   margin: 0;
   padding: 0;
-   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
-.choose-campaign-btn:hover {
+.choose-global-campaign-btn:hover {
   background-color: #000000;
-  opacity: 50%;
+  opacity: 70%;
 }
 
-.choose-campaign-img {
-  height: 400px;
+.choose-global-campaign-img {
+  height: 600px;
   width: 100%;
+  border-radius: 10px;
+}
+
+.coming-soon-container {
+  height: 600px;
+  width: 100%;
+  background-color: #2525250f;
+  opacity: 50%;
+  border-radius: 10px;
+}
+
+.coming-soon-img {
+  height: 600px;
+  width: 100%;
+  border-radius: 10px;
 }

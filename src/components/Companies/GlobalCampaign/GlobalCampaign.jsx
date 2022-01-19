@@ -70,7 +70,7 @@ function GlobalCampaign() {
         <Form.Control
           onChange={(e) => setBid(e.target.value)}
           type="text"
-          placeholder="Bid"
+          placeholder="Bid - Min bid 0.25"
           className="input mt-3 border-0 border-bottom"
         />
         <Form.Control
@@ -85,12 +85,6 @@ function GlobalCampaign() {
           placeholder="Total campaign budget"
           className="input mt-3 border-0 border-bottom"
         />
-        {/* <Form.Control
-          onChange={(e) => setArea(e.target.value)}
-          type="text"
-          placeholder="Area"
-          className="input mt-3 border-0 border-bottom"
-        /> */}
         <Form.Group controlId="formFile" className="mb-3 add-pet-form-group">
           <Form.Label>Select image</Form.Label>
           <Form.Control

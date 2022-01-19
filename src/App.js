@@ -71,12 +71,12 @@ function App() {
           {user?.user?.type === "Company" && (
             <Route path="/new_global_campaign" element={<GlobalCampaign />} />
           )}
-          {user?.user?.type === "Company" && (
+          {/* {user?.user?.type === "Company" && (
             <Route
               path="/new_specific_campaign"
               element={<SpecificCampaign />}
             />
-          )}
+          )} */}
           {user?.user?.type === "Company" && (
             <Route path="/dashboard" element={<Dashboard />} />
           )}
