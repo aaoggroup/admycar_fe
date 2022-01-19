@@ -8,8 +8,14 @@
 }
 
 .area-image-btn1:hover {
-  background-color: #00ff37;
+  border-left: solid 5px #00ff37;
+  border-right: solid 5px #00ff37;
   opacity: 50%;
+}
+
+.area-image-btn1:focus {
+  border-left: solid 5px #00ff37;
+  border-right: solid 5px #00ff37;
 }
 
 .area-image-btn2 {
@@ -22,8 +28,14 @@
 }
 
 .area-image-btn2:hover {
-  background-color: #fffb00;
+  border-left: solid 5px #fffb00;
+  border-right: solid 5px #fffb00;
   opacity: 50%;
+}
+
+.area-image-btn2:focus {
+  border-left: solid 5px #fffb00;
+  border-right: solid 5px #fffb00;
 }
 
 .area-image-btn3 {
@@ -36,6 +48,40 @@
 }
 
 .area-image-btn3:hover {
-  background-color: #002fff;
+  border-left: solid 5px #002fff;
+  border-right: solid 5px #002fff;
   opacity: 50%;
+}
+
+.area-image-btn3:focus {
+  border-left: solid 5px #002fff;
+  border-right: solid 5px #002fff;
+}
+
+.new-campaign-btn {
+  width: 170px;
+  height: 50px;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.new-campaign-btn:hover {
+  border: solid 1px #212429;
+  border-radius: 5px;
+}
+
+.draft-campaign-btn {
+  width: 140px;
+  height: 50px;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.draft-campaign-btn:hover {
+  border: solid 1px #212429;
+  border-radius: 5px;
 }

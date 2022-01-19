@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Form, Card, Image } from "react-bootstrap";
+import { Form, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { AppContext } from "../../../context/AppContext";
 import { controller, editCampaign, getSingleCampaign } from "../../../util/api";
 import "./edit-global-campaign.css";
+import { BsSave } from "react-icons/bs";
 
 function EditGlobalCampaign() {
   const { campaign_id } = useParams();
@@ -14,8 +15,9 @@ function EditGlobalCampaign() {
   const [bid, setBid] = useState(null);
   const [dailyBudget, setDailyBudget] = useState(null);
   const [totalCampaignBudget, setTotalCampaignBudget] = useState(null);
-  const [area, setArea] = useState(0);
+  const [area, setArea] = useState(100);
   const [status, setStatus] = useState();
+  const [areaMap, setAreaMap] = useState(false);
 
   useEffect(async () => {
     try {
@@ -74,14 +76,31 @@ function EditGlobalCampaign() {
     };
   };
 
+  const handleSetArea1Click = (e) => {
+    e.preventDefault();
+    setArea(1);
+  };
+
+  const handleSetArea2Click = (e) => {
+    e.preventDefault();
+    setArea(2);
+  };
+
+  const handleSetArea3Click = (e) => {
+    e.preventDefault();
+    setArea(3);
+  };
+
+  const handleOpenAreaMap = () => setAreaMap((prev) => !prev);
+
   return (
-    <Form className="d-flex flex-column col-12 justify-content-center align-items-center my-5">
-      <h1 className="display-6 mb-4">Edit Your Campaign</h1>
-      {campaignInfo && (
-        <Card className="d-flex flex-column col-8 justify-content-center align-items-center form-container p-4 search-container">
-          <div className="d-flex justify-content-around">
-            <div controlId="formFile" className="mb-3 add-pet-form-group">
-              <Form.Label>Select image</Form.Label>
+    <>
+      <h1 className="display-6 my-5">Edit Your Campaign</h1>
+      <Form className="d-flex col-12 justify-content-evenly align-items-center mb-5">
+        <Card className="d-flex flex-column col-7 justify-content-center align-items-center form-container p-4">
+          <div className="d-flex col-12 justify-content-between">
+            <div controlId="formFile" className="col-6">
+              <Form.Label className="fw-bold">Select image</Form.Label>
               <Form.Control
                 className={"form-input"}
                 type="file"
@@ -89,7 +108,7 @@ function EditGlobalCampaign() {
                 onChange={(e) => setPhotoToUpload(e.target.files[0])}
               />
             </div>
-            <div>
+            <div className="d-flex justify-content-end col-6">
               <img
                 className="campaign-asset-image"
                 alt="campaign image"
@@ -97,60 +116,115 @@ function EditGlobalCampaign() {
               ></img>
             </div>
           </div>
-          <Form.Control
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            type="text"
-            placeholder="Campaign Name"
-            className="input mt-3 border-0 border-bottom"
-          />
-          <Form.Control
-            onChange={(e) => setBid(e.target.value)}
-            value={bid}
-            type="text"
-            placeholder="Bid - Min bid 0.25"
-            className="input mt-3 border-0 border-bottom"
-          />
-          <Form.Control
-            onChange={(e) => setDailyBudget(e.target.value)}
-            value={dailyBudget}
-            type="text"
-            placeholder="Daily budget"
-            className="input mt-3 border-0 border-bottom"
-          />
-          <Form.Control
-            onChange={(e) => setTotalCampaignBudget(e.target.value)}
-            value={totalCampaignBudget}
-            type="text"
-            placeholder="Total campaign budget"
-            className="input mt-3 border-0 border-bottom"
-          />
-          <Form.Control
-            onChange={(e) => setArea(e.target.value)}
-            value={area}
-            type="text"
-            placeholder="Area"
-            className="input mt-3 border-0 border-bottom"
-          />
-          <Form.Control
-            onChange={(e) => setStatus(e.target.value)}
-            value={status}
-            type="text"
-            placeholder="Area"
-            className="input mt-3 border-0 border-bottom"
-          />
-
-          <div className="search-btn-container">
+          <div className="col-12 mt-4">
+            <Form.Label className="fw-bold">Campaign Name</Form.Label>
+            <Form.Control
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              type="text"
+              placeholder="Campaign Name"
+              className="border-0 border-bottom border-top"
+            />
+          </div>
+          <div className="col-12 mt-4">
+            <Form.Label className="fw-bold">Bid</Form.Label>
+            <Form.Control
+              onChange={(e) => setBid(e.target.value)}
+              value={bid}
+              type="text"
+              placeholder="Bid"
+              className="border-0 border-bottom border-top"
+            />
+            <small>*Min bid $0.25</small>
+          </div>
+          <div className="col-12 mt-4">
+            <Form.Label className="fw-bold">Daily budget</Form.Label>
+            <Form.Control
+              onChange={(e) => setDailyBudget(e.target.value)}
+              value={dailyBudget}
+              type="text"
+              placeholder="Daily budget"
+              className="border-0 border-bottom border-top"
+            />
+          </div>
+          <div className="col-12 mt-4">
+            <Form.Label className="fw-bold">Total campaign budget</Form.Label>
+            <Form.Control
+              onChange={(e) => setTotalCampaignBudget(e.target.value)}
+              value={totalCampaignBudget}
+              type="text"
+              placeholder="Total campaign budget"
+              className="border-0 border-bottom border-top"
+            />
+          </div>
+          <div className="col-12 mt-4">
+            <Form.Label className="fw-bold">Status</Form.Label>
+            <Form.Control
+              onChange={(e) => setStatus(e.target.value)}
+              value={status}
+              type="text"
+              placeholder="Status"
+              className="border-0 border-bottom border-top"
+            />
+          </div>
+          <div className="col-12 mt-4">
+            <Form.Label className="fw-bold">Select Area</Form.Label>
+            <Form.Check
+              onClick={handleOpenAreaMap}
+              type="switch"
+              id="custom-switch"
+              label={area}
+            />
+          </div>
+          <div className="mt-4">
             <button
               onClick={(e) => handleEditCampaign(e, "Active")}
-              className="search-btn mt-4"
+              className="d-flex edit-campaign-btn align-items-center justify-content-around"
             >
-              Edit Campaign
+              <BsSave />
+              Save Changes
             </button>
           </div>
         </Card>
-      )}
-    </Form>
+        {areaMap && (
+          <div className="d-flex flex-column align-items-center col-4">
+            <Form.Label className="fw-bold mb-4">
+              Choose Area To Advertise
+            </Form.Label>
+            <button
+              onClick={handleSetArea1Click}
+              className="area-image-btn1 col-10"
+            >
+              <img
+                className="col-12"
+                src="/images/area_1.1.png"
+                alt="Company Profile"
+              />
+            </button>
+            <button
+              onClick={handleSetArea2Click}
+              className="area-image-btn2 col-10"
+            >
+              <img
+                className="col-12"
+                src="/images/area_2.1.png"
+                alt="Company Profile"
+              />
+            </button>
+            <button
+              onClick={handleSetArea3Click}
+              className="area-image-btn3 col-10"
+            >
+              <img
+                className="col-12"
+                src="/images/area_3.1.png"
+                alt="Company Profile"
+              />
+            </button>
+          </div>
+        )}
+      </Form>
+    </>
   );
 }
 

@@ -4,3 +4,17 @@
   border-radius: 10px;
   border: solid 0.5px #e2e2e2;
 }
+
+.edit-campaign-btn {
+  width: 150px;
+  height: 50px;
+  background-color: transparent;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.edit-campaign-btn:hover {
+  border: solid 1px #212429;
+  border-radius: 5px;
+}
