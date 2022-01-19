@@ -1,0 +1,13 @@
+.todays-row-skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+  height: 40px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(199, 14%, 27%);
+  }
+  100% {
+    background-color: hsl(199, 14%, 55%);
+  }
+}

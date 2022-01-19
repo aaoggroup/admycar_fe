@@ -97,7 +97,9 @@ function SingleCampaignRow(props) {
           </p>
         </div>
         <div className="d-flex col-1 mt-2 justify-content-center">
-          <p className="fs-6 m-0">{campaign.area}</p>
+          <p className="fs-6 m-0">
+            {campaign.area === 100 ? "All Area" : campaign.area}
+          </p>
         </div>
         <div className="d-flex col-1 mt-2 justify-content-center">
           <p className={checkStatusForColor()}>{campaignStatus}</p>
