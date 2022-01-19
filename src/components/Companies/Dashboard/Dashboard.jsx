@@ -9,6 +9,7 @@ import {
   controller,
 } from "../../../util/api";
 import DashboardAllCampaignsRow from "../DashboardAllCampaignsRow/DashboardAllCampaignsRow";
+import ActiveCampaignsHeaders from "../ActiveCampaignsHeaders/ActiveCampaignsHeaders";
 import "./dashboard.css";
 
 function Dashboard() {
@@ -40,6 +41,7 @@ function Dashboard() {
       <div className="d-flex col-5 justify-content-center">
         <Card className="dashboard-card-container-right col-10 mt-4 p-4 ms-5 align-items-center">
           <p className="d-flex fs-5 fw-bold">Active Campaigns</p>
+          <ActiveCampaignsHeaders />
           {companyCampaigns &&
             companyCampaigns.map((campaign) => (
               <DashboardAllCampaignsRow campaign={campaign} />

@@ -17,33 +17,37 @@ function DashboardAllCampaignsRow(props) {
   };
 
   return (
-    <div className="d-flex col-12 justify-content-between text-dark">
+    <div className="d-flex col-12 justify-content-between border-bottom text-dark">
       {campaign.campaign_status === "Active" && (
         <div className="d-flex col-12 align-items-center mb-2">
-          <div className="status-small-circle-container">
+          {/* <div className="status-small-circle-container"></div> */}
+          <div className="d-flex col-2 mt-2 justify-content-center">
             <div className={checkStatusForColor()}></div>
+            {campaign.asset ? (
+              <img
+                className="campaign-small-image"
+                src={campaign.asset}
+                alt="Campaign"
+              />
+            ) : (
+              <img
+                className="campaign-small-image"
+                src="/images/global.png"
+                alt="Campaign"
+              />
+            )}
           </div>
-          {campaign.asset ? (
-            <img
-              className="campaign-small-image"
-              src={campaign.asset}
-              alt="Campaign"
-            />
-          ) : (
-            <img
-              className="campaign-small-image"
-              src="/images/global.png"
-              alt="Campaign"
-            />
-          )}
-          <p className="fs-6 p-0 my-0 mx-2">{campaign.campaign_name}</p>
-          <p className="fs-6 p-0 my-0 mx-2">
-            <b>Bid:</b> ${campaign.current_bid}
-          </p>
-          <p className="fs-6 p-0 my-0 mx-2">
-            <b>Today Spent:</b> ${campaign.today_spent} / $
-            {campaign.daily_budget}
-          </p>
+          <div className="d-flex col-5 mt-2 justify-content-center">
+            <p className="fs-6 m-0">{campaign.campaign_name}</p>
+          </div>
+          <div className="d-flex col-2 mt-2 justify-content-center">
+            <p className="fs-6 m-0">${campaign.current_bid}</p>
+          </div>
+          <div className="d-flex col-3 mt-2 justify-content-center">
+            <p className="fs-6 m-0">
+              ${campaign.today_spent.toFixed(2)} / ${campaign.daily_budget}
+            </p>
+          </div>
         </div>
       )}
     </div>

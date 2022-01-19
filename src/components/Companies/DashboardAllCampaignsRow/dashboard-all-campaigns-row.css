@@ -5,8 +5,8 @@
 
 .status-small-circle {
   position: relative;
-  bottom: 12px;
-  left: 10px;
+  bottom: 0px;
+  left: 9px;
   width: 10px;
   height: 10px;
   border: solid 1px #f8f8f8;
