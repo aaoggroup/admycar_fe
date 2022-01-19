@@ -122,7 +122,7 @@ function NavbarTop() {
               onClick={handleAddNewCampaignClick}
             >
               <BsPlus className="pb-1" />
-              Add New Campaign
+              Launch New Campaign
             </Button>
           )}
         </div>

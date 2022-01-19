@@ -57,25 +57,53 @@ function Dashboard() {
       </div>
       <div className="d-flex col-7 left-dashboard-container justify-content-around">
         <Card className="dashboard-card-container col-5 mt-4 mx-4 p-4 align-items-center">
-          <p className="d-flex fs-5 fw-bold">Balance</p>$
-          {dashboardCompanyData?.balance?.toFixed(2)}
+          <p className="d-flex fs-5 fw-bold">Your Balance</p>
+          <div className="d-flex col-12 justify-content-center flex-grow-1 align-items-center">
+            <h1 className="fs-1">
+              ${dashboardCompanyData?.balance?.toFixed(2)}
+            </h1>
+          </div>
         </Card>
         <Card className="dashboard-card-container col-5 mt-4 mx-4 p-4">
-          <p className="d-flex fs-5 fw-bold">Company Details:</p>
+          <p className="d-flex fs-5 fw-bold">Ma Lasim Po????</p>
         </Card>
         <Card className="dashboard-card-container col-5 mt-4 mx-4 p-4 align-items-center">
-          <p className="d-flex fs-5 fw-bold">Today's Spent</p>$
-          {companyCampaigns
-            ?.reduce((acc, cur) => acc + cur.today_spent, 0)
-            .toFixed(2)}{" "}
-          / ${companyCampaigns?.reduce((acc, cur) => acc + cur.daily_budget, 0)}
+          <p className="d-flex fs-5 fw-bold">Today's Spent</p>
+          <div className="d-flex col-12 justify-content-center flex-grow-1 align-items-center">
+            <h1 className="fs-1">
+              $
+              {companyCampaigns
+                ?.reduce((acc, cur) => acc + cur.today_spent, 0)
+                .toFixed(2)}{" "}
+              /
+            </h1>
+            <h1 className="fs-5">
+              $
+              {companyCampaigns?.reduce(
+                (acc, cur) => acc + cur.daily_budget,
+                0
+              )}
+            </h1>
+          </div>
         </Card>
         <Card className="dashboard-card-container col-5 mt-4 mx-4 p-4 align-items-center">
-          <p className="d-flex fs-5 fw-bold">Total Spent</p>$
-          {companyCampaigns
-            ?.reduce((acc, cur) => acc + cur.total_spent, 0)
-            .toFixed(2)}{" "}
-          / ${companyCampaigns?.reduce((acc, cur) => acc + cur.total_budget, 0)}
+          <p className="d-flex fs-5 fw-bold">Total Spent</p>
+          <div className="d-flex col-12 justify-content-center flex-grow-1 align-items-center">
+            <h1 className="fs-1">
+              $
+              {companyCampaigns
+                ?.reduce((acc, cur) => acc + cur.total_spent, 0)
+                .toFixed(2)}{" "}
+              /
+            </h1>
+            <h1 className="fs-5">
+              $
+              {companyCampaigns?.reduce(
+                (acc, cur) => acc + cur.total_budget,
+                0
+              )}
+            </h1>
+          </div>
         </Card>
       </div>
     </div>
