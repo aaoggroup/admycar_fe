@@ -16,7 +16,7 @@ function StartStreaming() {
   const handleStartStreaming = (e) => {
     e.preventDefault();
     loopFunctionsForInterval();
-    setInterval2(setInterval(loopFunctionsForInterval, 10000));
+    setInterval2(setInterval(loopFunctionsForInterval, 5000));
     setIsStreaming((prev) => !prev);
   };
 
@@ -49,7 +49,7 @@ function StartStreaming() {
         bid: adToStream.current_bid,
         companyID: adToStream.company_id,
         campaignID: adToStream._id,
-        promoterID: user.user.promoter_id
+        promoterID: user.user.promoter_id,
       });
     }
     //push to stream history(moneyEarned)

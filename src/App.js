@@ -52,7 +52,7 @@ function App() {
       if (user?.user?.type === "Company") {
         balanceInterval = setInterval(async () => {
           const company = await getSingleCompany(user.user.company_id);
-          setBalance(company.data[0].balance);
+          setBalance(company?.data[0]?.balance);
         }, 1000);
       }
     } catch (err) {
