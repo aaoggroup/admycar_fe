@@ -9,6 +9,7 @@ import {
 import "./navbar-top.css";
 import { BsPlus } from "react-icons/bs";
 import { VscSignOut } from "react-icons/vsc";
+import { RiTaxiWifiFill } from "react-icons/ri";
 import { useNavigate, Link } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 
@@ -65,8 +66,9 @@ function NavbarTop() {
         <div className="d-flex col-4 align-items-center">
           <Link
             to="/"
-            className="d-flex text-decoration-none me-3 text-light fs-4"
+            className="d-flex text-decoration-none me-3 text-light fs-4 align-items-center"
           >
+            <RiTaxiWifiFill className="me-2" />
             AdMyCar
           </Link>
           {user?.user?.type === "Company" && (
