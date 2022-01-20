@@ -6,6 +6,7 @@ import { controller, editCampaign, getSingleCampaign } from "../../../util/api";
 import "./edit-global-campaign.css";
 import { BsSave } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import EditCampaignSkeleton from "../../SkeletonsLoaders/EditCampaignSkeleton/EditCampaignSkeleton";
 
 function EditGlobalCampaign() {
   const { campaign_id } = useParams();
@@ -19,10 +20,12 @@ function EditGlobalCampaign() {
   const [area, setArea] = useState(100);
   const [status, setStatus] = useState();
   const [areaMap, setAreaMap] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(async () => {
+    setIsLoading((prev) => !prev);
     try {
       const data = await getSingleCampaign({
         campaign_id,
@@ -31,6 +34,7 @@ function EditGlobalCampaign() {
       if (data) {
         setCampaignInfo(data.data);
         populateCampaignData(data.data);
+        setIsLoading((prev) => !prev);
       }
     } catch (err) {
       console.log(err);
@@ -105,104 +109,107 @@ function EditGlobalCampaign() {
   return (
     <>
       <h1 className="display-6 my-5">Edit Your Campaign</h1>
+      {isLoading && <EditCampaignSkeleton />}
       <Form className="d-flex col-12 justify-content-evenly align-items-center mb-5">
-        <Card className="d-flex flex-column col-7 justify-content-center align-items-center form-container p-4">
-          <div className="d-flex col-12 justify-content-between">
-            <div controlId="formFile" className="col-6">
-              <Form.Label className="fw-bold">Select image</Form.Label>
+        {!isLoading && (
+          <Card className="d-flex flex-column col-7 justify-content-center align-items-center p-4">
+            <div className="d-flex col-12 justify-content-between">
+              <div controlId="formFile" className="col-6">
+                <Form.Label className="fw-bold">Select image</Form.Label>
+                <Form.Control
+                  className={"form-input"}
+                  type="file"
+                  name="image"
+                  onChange={(e) => setPhotoToUpload(e.target.files[0])}
+                />
+              </div>
+              <div className="d-flex justify-content-end col-6">
+                <img
+                  className="campaign-asset-image"
+                  alt="campaign image"
+                  src={image}
+                ></img>
+              </div>
+            </div>
+            <div className="col-12 mt-4">
+              <Form.Label className="fw-bold">Campaign Name</Form.Label>
               <Form.Control
-                className={"form-input"}
-                type="file"
-                name="image"
-                onChange={(e) => setPhotoToUpload(e.target.files[0])}
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                type="text"
+                placeholder="Campaign Name"
+                className="border-0 border-bottom border-top"
               />
             </div>
-            <div className="d-flex justify-content-end col-6">
-              <img
-                className="campaign-asset-image"
-                alt="campaign image"
-                src={image}
-              ></img>
-            </div>
-          </div>
-          <div className="col-12 mt-4">
-            <Form.Label className="fw-bold">Campaign Name</Form.Label>
-            <Form.Control
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              type="text"
-              placeholder="Campaign Name"
-              className="border-0 border-bottom border-top"
-            />
-          </div>
-          <div className="col-12 mt-4">
-            <Form.Label className="fw-bold">Bid</Form.Label>
-            <Form.Control
-              onChange={(e) => setBid(e.target.value)}
-              value={bid}
-              type="text"
-              placeholder="Bid"
-              className="border-0 border-bottom border-top"
-            />
-            <small>*Min bid $0.25</small>
-          </div>
-          <div className="col-12 mt-4">
-            <Form.Label className="fw-bold">Daily budget</Form.Label>
-            <Form.Control
-              onChange={(e) => setDailyBudget(e.target.value)}
-              value={dailyBudget}
-              type="text"
-              placeholder="Daily budget"
-              className="border-0 border-bottom border-top"
-            />
-          </div>
-          <div className="col-12 mt-4">
-            <Form.Label className="fw-bold">Total campaign budget</Form.Label>
-            <Form.Control
-              onChange={(e) => setTotalCampaignBudget(e.target.value)}
-              value={totalCampaignBudget}
-              type="text"
-              placeholder="Total campaign budget"
-              className="border-0 border-bottom border-top"
-            />
-          </div>
-          <div className="col-12 mt-4">
-            <Form.Label className="fw-bold">Status</Form.Label>
-            <Form.Control
-              onChange={(e) => setStatus(e.target.value)}
-              value={status}
-              type="text"
-              placeholder="Status"
-              className="border-0 border-bottom border-top"
-            />
-          </div>
-          <div className="col-12 mt-4">
-            <Form.Label className="fw-bold">Select Area</Form.Label>
-            <div className="d-flex align-items-center">
-              <Form.Check
-                onClick={handleOpenAreaMap}
-                type="switch"
-                id="custom-switch"
-                label={area === 100 ? "All Area" : area}
+            <div className="col-12 mt-4">
+              <Form.Label className="fw-bold">Bid</Form.Label>
+              <Form.Control
+                onChange={(e) => setBid(e.target.value)}
+                value={bid}
+                type="text"
+                placeholder="Bid"
+                className="border-0 border-bottom border-top"
               />
+              <small>*Min bid $0.25</small>
+            </div>
+            <div className="col-12 mt-4">
+              <Form.Label className="fw-bold">Daily budget</Form.Label>
+              <Form.Control
+                onChange={(e) => setDailyBudget(e.target.value)}
+                value={dailyBudget}
+                type="text"
+                placeholder="Daily budget"
+                className="border-0 border-bottom border-top"
+              />
+            </div>
+            <div className="col-12 mt-4">
+              <Form.Label className="fw-bold">Total campaign budget</Form.Label>
+              <Form.Control
+                onChange={(e) => setTotalCampaignBudget(e.target.value)}
+                value={totalCampaignBudget}
+                type="text"
+                placeholder="Total campaign budget"
+                className="border-0 border-bottom border-top"
+              />
+            </div>
+            <div className="col-12 mt-4">
+              <Form.Label className="fw-bold">Status</Form.Label>
+              <Form.Control
+                onChange={(e) => setStatus(e.target.value)}
+                value={status}
+                type="text"
+                placeholder="Status"
+                className="border-0 border-bottom border-top"
+              />
+            </div>
+            <div className="col-12 mt-4">
+              <Form.Label className="fw-bold">Select Area</Form.Label>
+              <div className="d-flex align-items-center">
+                <Form.Check
+                  onClick={handleOpenAreaMap}
+                  type="switch"
+                  id="custom-switch"
+                  label={area === 100 ? "All Area" : area}
+                />
+                <button
+                  onClick={handleSetAllAreaClick}
+                  className="clear-selection-btn col-10"
+                >
+                  Clear Selection
+                </button>
+              </div>
+            </div>
+            <div className="mt-4">
               <button
-                onClick={handleSetAllAreaClick}
-                className="clear-selection-btn col-10"
+                onClick={(e) => handleEditCampaign(e, "Active")}
+                className="d-flex edit-campaign-btn align-items-center justify-content-around"
               >
-                Clear Selection
+                <BsSave />
+                Save Changes
               </button>
             </div>
-          </div>
-          <div className="mt-4">
-            <button
-              onClick={(e) => handleEditCampaign(e, "Active")}
-              className="d-flex edit-campaign-btn align-items-center justify-content-around"
-            >
-              <BsSave />
-              Save Changes
-            </button>
-          </div>
-        </Card>
+          </Card>
+        )}
         {areaMap && (
           <div className="d-flex flex-column align-items-center col-4">
             <Form.Label className="fw-bold mb-4">
